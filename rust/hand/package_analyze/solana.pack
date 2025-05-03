@@ -1,0 +1,1217 @@
+aes-gcm-siv
+高级对称加密;
+6924473  
+1465398
+6
+
+ahash
+使用给定密匙计算 hash;
+288677548   
+43076572
+6
+
+anyhow
+通用Result处理;
+320095834    
+8581666
+7
+
+ark-bn254
+一种椭圆曲线加密算法，可用于零知识证明;
+7520636   
+1370370
+9
+
+ark-ec
+处理不同类型的加法群的特征和算法，重点处理由椭圆曲线生成的群;
+13697610   
+2565776
+9
+
+ark-ff 
+定义有限域特征以及遵循这些特征的实用抽象模型;
+21442326   
+5128084
+9
+
+ark-serialize 
+椭圆曲线元素的序列化与反序列化	
+21640923  
+5149786
+9
+
+array-bytes 
+具有完全 No-STD 兼容性的 Array/Bytes/Hex 实用程序集合
+7321280  
+875587
+5
+
+arrayref    
+此包仅包含四个宏，对数组的一些处理
+86659361  
+13831406
+5
+
+assert_cmd
+简化 CLI 集成测试的流程
+26731347  
+5157476
+1
+
+assert_matches
+测试某个值是否与给定的模式匹配
+28948906  
+3963213
+1
+
+async-channel
+异步多生产者多消费者通道，其中每条消息只能被所有现有消费者中的一个接收
+112701818   
+25138819
+10
+
+async-lock     
+异步通信  Barrier Mutex RwLock  Semaphore
+101199951   
+19834416
+10
+
+async-trait
+异步函数的稳定性改进，将包含异步函数的 Trait 用作 dyn Trait 的支持
+226898919   
+35543521
+10
+
+atty 
+命令行输入输出的优化
+197214075   
+14198632
+1
+
+backoff   
+未知用途 
+40077894   
+7680593
+5
+
+base64  
+数据压缩算法
+558240098  
+92541512
+7
+
+bincode 
+对二进制序列化与反序列化
+111156219  
+17448619
+6
+
+bitflags
+生成大数据二进制flag bit的宏
+614056821  
+95267446
+7
+
+blake3 
+基于  blake3 的 hash 算法
+50241178  
+9174358
+6
+
+block-buffer 
+用于处理固定大小数据块的缓冲区
+335084911  
+46858963
+6
+
+borsh 
+二进制序列化格式
+44764628  
+10412066
+10
+
+bs58
+base58 数据序列化的一种实现
+36741043   
+4935487
+1
+
+bv  
+实现 Bit-vectors and bit-slices
+6808237 
+954943
+1
+
+byte-unit
+一个用于与字节单位交互的库
+1680155   
+1215195
+1
+
+bytecount  
+快速计算字节切片中给定字节的出现次数或 UTF-8 代码点的数量
+44109580  
+7947776
+1
+
+bytemuck 
+用来处理大量字节
+102590058   
+21617564
+6
+
+byteorder
+用于以大端和小端读取/写入数字的库
+307792325  
+44307914
+7
+
+bytes
+用于处理字节的实用程序库
+342710398
+49379245
+7
+
+bzip2 
+实现 bzip 压缩和解压缩
+48794633
+10282766
+8
+
+caps
+支持现代 Linux 内核中可用的操作功能
+5613449
+814123
+1
+
+cargo_metadata 
+结构化访问 Cargo 元数据的输出
+79454598
+12435637
+1
+
+cc 
+Cargo 构建脚本的构建时依赖项，用于协助调用本机 C/C++ 编译器将本机 C/C++ 代码编译为静态档案，以链接到 Rust 代码中;
+409513063
+58395124
+9
+
+chrono
+日期和时间库;
+280601596
+40915619
+8
+
+chrono-humanize 
+人性化输出的时间格式;
+4486929
+536770
+1
+
+clap 
+命令行解析器;
+402240072
+0671372
+7
+
+console
+提供对各种终端功能的访问，以便您构建更美观的命令行界面;
+93911326
+16478969
+6
+
+console_error_panic_hook 
+针对‘wasm32-unknown-unknown’的恐慌钩子，将恐慌记录到‘console.error’
+28398552
+4039351
+6
+
+console_log 
+将 Rust 日志消息路由到浏览器控制台的日志记录工具;
+12495658
+4525879
+1
+
+const_format
+编译时字符串格式化
+36350479
+9413859
+1
+
+core_affinity 
+管理 CPU 亲和性; 
+12652587
+2668957
+5
+
+criterion 
+基准测试库
+90370791
+18675863
+4
+
+criterion-stats 
+Criterion 的统计库
+1107582
+182399
+9
+
+crossbeam-channel 
+用于消息传递的多生产者多消费者渠道
+225596693
+28360899
+10
+
+csv 
+支持 serde 的快速 CSV 解析;
+94575943
+13470740
+7
+
+ctrlc 
+适用于 Rust 项目的简易 Ctrl-C 处理程序
+47269975
+8254755
+6
+
+curve25519-dalek 
+ristretto255 和 Curve25519 上群运算的纯 Rust 实现
+73831154
+12733010
+9
+
+dashmap
+为 Rust 提供超快的并发 HashMap;
+114386523
+20600665
+4
+
+derivation-path 
+用于处理 BIP32/44/49 派生路径的简单结构
+6671380
+929667
+6
+
+dialoguer 
+命令行提示库; 
+26656394
+4075956
+5
+
+digest 
+加密哈希函数和消息认证码
+345516060
+48255602
+7
+
+dir-diff 
+两个目录的内容是否不同
+5502106
+431644
+6
+
+dirs-next 
+提供多平台特定的标准目录位置; 
+69231439
+9191889
+5
+
+dlopen2 
+用于打开和操作动态链接库（也称为共享对象或共享库）的库;
+4527797
+1245721
+10
+
+eager 
+用途未知;
+2747077
+602272
+5
+
+ed25519-dalek 
+使用纯 Rust 快速高效地生成、签名和验证 ed25519 EdDSA 密钥;
+48335722
+10088965
+9
+
+ed25519-dalek-bip32 
+简化的 ed25519 BIP32 派生
+6489736
+855977
+6
+
+either 
+具有变量“Left”和“Right”的枚举“Either”是具有两种情况的通用总和类型;
+355642135
+52872928
+1
+
+enum-iterator 
+迭代某一类型的所有值的工具
+26300479
+3073666
+1
+
+env_logger 
+通过环境变量配置的“log”的日志记录实现;
+240084592
+33995470
+7
+
+etcd-client 
+etcd v3 API 客户端
+2858567
+403752
+6
+
+fast-math 
+数学函数的快速版本；
+5464133
+265359
+6
+
+fd-lock 
+使用文件描述符对文件进行跨平台锁定的建议;
+18520321
+2718380
+1
+
+flate2
+DEFLATE 压缩和解压缩以 Read/BufRead/Write 流的形式公开。支持 miniz_oxide 和多种 zlib 实现。支持 zlib、gzip 和原始 deflate 流;
+227635676
+35018449
+6
+
+fnv 
+Fowler–Noll–Vo哈希函数
+277663011
+41534268
+5
+
+fs_extra 
+扩展 std::fs 和 std::io。递归复制包含进程信息等的文件夹;
+55673389
+11058174
+1
+
+futures 
+未来和流的实现，具有零分配、可组合性和类似迭代器的接口;
+269706147
+36794247
+7
+
+futures-util 
+futures-rs 库的常用实用程序和扩展特性
+281607250
+40953008
+7
+
+gag 
+禁止、重定向或暂停 stdout/stderr 输出。目前仅支持 *nix 操作系统; 
+1935852
+217975
+1
+
+generic-array 
+实现数组功能的泛型类型
+302352758
+40835385
+6
+
+gethostname 
+所有平台的 gethostname;
+35656517
+7314402
+1
+
+getrandom 
+一个用于从系统源检索随机数据的小型跨平台库
+475597760
+87415412
+1
+
+goauth 
+for authenticating Server to Server Apps for Google Cloud Engine.
+5799999
+750016
+1
+
+hex 
+将数据编码为十六进制表示形式或从十六进制表示形式解码数据;
+221862191
+33868685
+8
+
+hidapi 
+使用 rust 实现对 hidapi 的封装;
+3702357
+493184
+5
+
+histogram 
+histogram 数据结构的集合
+10116717
+2288649
+5
+
+hmac 
+基于哈希的消息认证码（HMAC）的通用实现
+195889027
+28619797
+6
+
+http 
+一组用于表示 HTTP 请求和响应的类型。
+298987892
+54341336
+6
+
+humantime 
+std::time::{Duration SystemTime} 的解析器和格式化程序;
+200654056
+28492620
+6
+
+hyper 
+适用于所有人的保护性且高效的 HTTP 库;
+292852575
+50260340
+6
+
+hyper-proxy 
+基于 Hyper 的应用程序的代理连接器;
+5280782
+507898
+6
+
+im 
+不可变集合数据类型;
+16301060
+2410869
+6
+
+index_list 
+使用 vector 索引在安全 Rust 中实现的双向链表
+2162998
+247586
+6
+
+indexmap 
+顺序一致、迭代速度快的哈希表;
+477443644
+84412830
+6
+
+indicatif 
+Rust 的进度条和 CLI 报告库;
+54820640
+10503715
+1
+
+itertools 
+额外的迭代器适配器、迭代器方法、自由函数和宏;
+456573368
+100760705
+7
+
+jemallocator 
+由 jemalloc 支持的 Rust 分配器
+16674199
+1512665
+5
+
+js-sys 
+所有 JS 环境（如 Node.js 和浏览器）中所有 JS 全局对象和函数的绑定，使用 `wasm-bindgen` 包在 `#[wasm_bindgen]` 上构建;
+144197376
+24253725
+1
+
+json5 
+使用 Serde 的 Rust JSON5 序列化器和反序列化器;
+24559949
+6499826
+10
+
+jsonrpc-core 
+JSON-RPC 2.0 规范的传输不可知 Rust 实现;
+11412752
+835160
+9
+
+jsonrpc-core-client 
+传输不可知的 JSON-RPC 2.0 客户端实现;
+3951063
+248825
+6
+
+jsonrpc-derive 
+`jsonrpc-core` 的高级类型包装器;
+4587635
+256540
+6
+
+jsonrpc-http-server 
+Rust http 服务器使用 JSONRPC 2.0;
+3754157
+267546
+6
+
+jsonrpc-ipc-server
+JSON-RPC 的 IPC 服务器
+2587033
+174326
+7
+
+jsonrpc-pubsub 
+jsonrpc 的发布-订阅扩展;
+4306495
+258961
+6
+
+jsonrpc-server-utils 
+jsonrpc-core 的服务器实用程序;
+4477585
+269505
+6
+
+lazy_static 
+用于在 Rust 中声明延迟评估静态的宏;
+392315081
+50558339
+7
+
+libc
+原始 FFI 绑定到平台库（如 libc）;
+567208031
+77742028
+6
+
+libloading 
+编译程序为各个平台的动态库、静态库;
+181188694
+27867341
+4
+
+secp256k1
+纯 Rust secp256k1 实现;
+19065074
+2208234
+7
+
+light-poseidon 
+Rust 中的 Poseidon 哈希实现;
+4520012
+592492
+1
+
+log 
+轻量级日志;
+432914652
+60711323
+7
+
+lru 
+LRU缓存实现;
+96459115
+16998428
+4
+
+lz4 
+压缩算法 LZ4 的实现 ;
+26644564
+5375132
+6
+
+memmap2 
+用于内存映射文件 IO 的跨平台 Rust API;
+108092523
+19946055
+4
+
+memoffset
+Rust 结构的 offset_of 功能;
+319806887
+41254492
+4
+
+merlin
+Composable proof transcripts for public-coin arguments of knowledge;
+14720548
+1835081
+5
+
+min-max-heap 
+高效的双端优先级队列;
+2634868
+1171916
+8
+
+mockall
+Rust 的强大模拟对象库;
+57339538
+10605540
+5
+
+modular-bitfield 
+允许使用模块化构建块轻松定义位域类型;
+4133163
+637449
+1
+
+nix 
+Rust 友好绑定到 *nix API;
+250881174
+39511342
+1
+
+num-bigint 
+Rust 的大整数实现;
+201062773
+31727502
+4
+
+num-derive
+Numeric 语法扩展
+68835202
+12442101
+9
+
+num-traits 
+Numeric traits for generic mathematics;
+380124833
+50786154
+4
+
+num_cpus 
+Get the number of CPUs on a machine;
+281691863
+29050007
+6
+
+num_enum 
+过程宏使原语和枚举之间的互操作更容易;
+85413130
+16722324
+1
+
+openssl 
+OpenSSL bindings;
+162098549
+24425159
+8
+
+ouroboros 
+Easy safe self-referential struct generation;
+32209466
+6033701
+6
+
+parking_lot 
+More compact and efficient implementations of the standard synchronization primitives;
+391084404
+53664003
+6
+
+pbkdf2 
+Generic implementation of PBKDF2;
+83638198
+12907031
+6
+
+pem 
+ PEM 加解密
+97063117
+21471993
+4
+
+percentage 
+A crate to calculate percentages;
+3024378
+650444
+1
+
+pickledb 
+A lightweight and simple key-value store written in Rust;
+996877
+150304
+1
+
+pkcs8 
+Cryptography Standards (PKCS);
+105297854
+27383382
+6
+
+predicates 
+boolean-valued predicate functions;
+78184089
+12995663
+6
+
+pretty-hex 
+Pretty hex dump of bytes slice in the common style;
+10185041
+1180973
+7
+
+prio-graph 
+具有顶级优先级排序的惰性填充有向无环图;
+1026409
+193768
+9
+
+proc-macro2 
+编译器的“proc_macro”API 的替代实现，将基于标记的库与过程宏用例分离;
+586615469
+80817621
+7
+
+proptest 
+Hypothesis-like property-based testing and shrinking;
+46158285
+12839561
+1
+
+prost 
+A Protocol Buffers implementation for the Rust Language;
+169949283
+37357250
+6
+
+prost-build 
+从协议缓冲区文件生成 Prost 注释的 Rust 类型;
+115912035
+21844521
+6
+
+prost-types 
+Prost 定义 Protocol Buffers 众所周知的类型;
+138124883
+29538356
+6
+
+protobuf-src 
+为 libprotobuf 构建系统集成;
+4098709
+584972
+6
+
+qstring 
+Query string parser;
+9731121
+1093116
+1
+
+qualifier_attr 
+用于向各种项目添加“限定符”（pub、async、unsafe、const、extern“C”……）的程序宏属性;
+4169048
+500177
+5
+
+quinn 
+多功能 QUIC 传输协议实现;
+39908127
+14943502
+9
+
+quinn-proto 
+State machine for the QUIC transport protocol;
+42252335
+14994141
+9
+
+quote 
+Quasi-quoting macro quote!(...);
+573965006
+80010188
+7
+
+rand 
+Random number generators and other randomness functionality.
+508008815
+75715094
+7
+
+rand_chacha 
+ChaCha random number generator
+421336748
+68189292
+7
+
+raptorq 
+RaptorQ (RFC6330);
+663952
+55346
+5
+
+rayon 
+提供简单的任务并行计算
+192528016
+29353985
+4
+
+rcgen 
+Rust X.509 certificate generator.
+22287594
+3616511
+9
+
+reed-solomon-erasure 
+Rust implementation of Reed-Solomon erasure coding;
+2575356
+282766
+1
+
+regex 
+Rust 正则表达式的实现.
+426123235
+56323032
+4
+
+reqwest
+higher level HTTP client library;
+205544012
+37635298
+1
+
+rolling-file 
+A rolling file appender with customizable rolling conditions.
+2302887
+417167
+5
+
+rpassword
+Read passwords in console applications.
+25717927
+2786155
+1
+
+rustc_version 
+A library for querying the version of a installed rustc compiler;
+265136242
+39633013
+6
+
+rustls 
+Rustls is a modern TLS library written in Rust.
+272677861
+52529432
+6
+
+rustversion 
+根据 rustc 编译器版本进行条件编译.
+192006398
+37271729
+1
+
+scopeguard 
+RAII 作用域保护机制，当给定闭包超出作用域时，即使代码处于恐慌之间（假设恐慌正在解除），它也会运行该闭包.
+342321845
+44275373
+1
+
+semver 
+Cargo 语义版本控制风格的解析器和评估器;
+361343773
+52203002
+1
+
+seqlock 
+读写锁可提供极快的读取访问，而不会导致写入者挨饿;
+1354071
+297218
+1
+
+serde 
+A generic serialization/deserialization framework.
+509886123
+70098801
+7
+
+serde_bytes 
+Optimized handling of `&[u8]` and `Vec<u8>` for Serde.
+77076451
+13637644
+10
+
+serde_derive 
+Macros 1.1 implementation of #[derive(Serialize Deserialize)].
+467197844
+65488415
+7
+
+serde_json 
+A JSON serialization file format.
+444853560
+62317826
+7
+
+serde_with 
+Custom de/serialization functions for Rust's serde.
+107686209
+23654220
+10
+
+serde_yaml 
+YAML data format for Serde.
+117199139
+22399482
+7
+
+serial_test 
+Allows for the creation of serialised Rust tests.
+52226678
+11828894
+6
+
+sha2 
+SHA-2 哈希函数系列的纯 Rust 实现，包括 SHA-224、SHA-256、SHA-384 和 SHA-512.
+282062401
+43140027
+7
+
+sha3 
+SHA-3 的纯 Rust 实现，SHA-3 是基于 Keccak 的哈希函数系列.
+61266535
+8998600
+4
+
+signal-hook 
+Unix signal handling.
+75383734
+9754980
+1
+
+siphasher 
+SipHash-2-4 SipHash-1-3 and 128-bit variants in pure Rust.
+155240565
+29031997
+5
+
+smallvec 
+'Small vector' optimization: store up to a small number of items on the stack.
+398246842
+55361229
+6
+
+smpl_jwt 
+Very simple JWT generation lib.
+5738542
+745487
+1
+
+socket2 
+用于处理具有最大配置量的网络套接字的实用程序.
+339449335
+49531787
+4
+
+soketto 
+A websocket protocol implementation.
+15769893
+2136252
+9
+
+static_assertions 
+Compile-time assertions to ensure that invariants are met.
+174728980
+27257467
+6
+
+stream-cancel 
+A library for interrupting asynchronous streams.
+5272693
+499193
+1
+
+strum 
+Helpful macros for working with enums and strings.
+183262412
+36197572
+6
+
+strum_macros
+Helpful macros for working with enums and strings.
+191071454
+36849986
+6
+
+subtle 
+Pure-Rust traits and utilities for constant-time cryptographic implementations.
+212522517
+36554186
+5
+
+symlink 
+Create symlinks in a cross-platform manner.
+3293910
+394168
+1
+
+syn 
+Parser for Rust source code.
+841814362
+124833946
+7
+
+sys-info 
+获取 Rust 中的系统信息。目前支持 Linux、Mac OS X、illumos、Solaris、FreeBSD、OpenBSD 和 Windows.
+13697454
+1198088
+6
+
+sysctl 
+Simplified interface to libc::sysctl.
+4367755
+812977
+5
+
+systemstat 
+Get system information/statistics in a cross-platform way.
+2084782
+288994
+1
+
+tar 
+Rust 实现的 TAR 文件读写器.
+74083882
+12310673
+6
+
+tarpc 
+An RPC framework for Rust with a focus on ease of use.
+4699437
+510668
+1
+
+tempfile 
+A library for managing temporary files and directories.
+266896210
+42579427
+1
+
+test-case 
+提供#[test_case(...)]过程宏属性，可轻松生成参数化测试用例.
+18542195
+5752749
+1
+
+thiserror 
+derive(Error)
+395570870
+79446265
+5
+
+tiny-bip39 
+A fork of the bip39 crate with fixes to v0.6. Rust implementation of BIP-0039.
+12536702
+1078300
+6
+
+tokio 
+An event-driven non-blocking I/O platform for writing asynchronous I/O backed applications.
+307561638
+43721909
+7
+
+tokio-serde 
+Send and receive Serde encodable types over the network using Tokio.
+8458775
+937199
+5
+
+tokio-stream 
+Utilities to work with `Stream` and `tokio`.
+148725638
+25598821
+7
+
+tokio-tungstenite 
+Tokio binding for Tungstenite the Lightweight stream-based WebSocket implementation.
+74954599
+13189048
+9
+
+tokio-util 
+Additional utilities for working with Tokio.
+267683917
+38686879
+7
+
+toml 
+A native Rust encoder and decoder of TOML-formatted files and streams;
+294161475
+44401749
+10
+
+tonic 
+A gRPC over HTTP/2 implementation focused on high performance interoperability and flexibility;
+111673894
+22269663
+6
+
+tonic-build 
+Codegen module of `tonic` gRPC implementation;
+80730763
+15816187
+6
+
+trees 
+General purpose tree data structures;
+1875500
+242680
+6
+
+tungstenite 
+Lightweight stream-based WebSocket implementation;
+86382832
+14747513
+9
+
+uriparse 
+A URI parser including relative references;
+11196883
+3062462
+7
+
+url 
+URL library for Rust based on the WHATWG URL Standard;
+304111644
+42855558
+10
+
+wasm-bindgen 
+asy support for interacting between JS and Rust;
+156329198
+25804880
+10
+
+winapi 
+Raw FFI bindings for all of Windows API;
+201826572
+24372249
+1
+
+winreg 
+Rust bindings to MS Windows Registry API;
+89100913
+11313555
+1
+
+x509-parser 
+Parser for the X.509 v3 format (RFC 5280 certificates);
+39883360
+10713881
+9
+
+zeroize 
+Securely clear secrets from memory with a simple trait built on stable Rust primitives;
+182396717
+35092694
+6
+
+zstd 
+zstd 压缩算法库;
+128089544
+23792581
+6

@@ -1,0 +1,14 @@
+[workspace]
+members = [ "chat", "connect_tcp", "hello_macro", "hello_macro_application", "hello_macro_derive", "jsonrpc", "tinydb", "tinyhttp", "yaml_file_parse",]
+
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["hml"]
+
+[workspace.dependencies]
+log = "0.4.27"
+env_logger = "0.11.8"
+clap = { version = "4.5.37", features = [ "derive"]}

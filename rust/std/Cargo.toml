@@ -1,0 +1,5 @@
+[workspace]
+    member = [
+        "standard",
+    ]
+members = [ "collections","standard"]
