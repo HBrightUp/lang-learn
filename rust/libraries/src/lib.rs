@@ -21,3 +21,5 @@ pub mod signalshook;
 pub mod numcpus;
 pub mod uriparse;
 pub mod secp256k1;
+pub mod reqwest;
+pub mod futures;

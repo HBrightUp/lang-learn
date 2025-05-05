@@ -7,12 +7,12 @@ use flying::cli::{
 
 #[tokio::main]
 async fn main() {
-    //execute(&CrateName::EnvLogger);
-    println!("Hello, flying!");
+    execute(&CrateName::EnvLogger);
+    println!("Hello, hml!");
 
-    execute(&CrateName::Secp256k1);
+    execute(&CrateName::Futures);
 
-    std::thread::sleep(std::time::Duration::from_secs(2));
+    std::thread::sleep(std::time::Duration::from_secs(10));
     println!("Hello, byebye! ");
 
     

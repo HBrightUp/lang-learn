@@ -1,5 +1,5 @@
 [workspace]
-members = [ "chat", "connect_tcp", "hello_macro", "hello_macro_application", "hello_macro_derive", "jsonrpc", "tinydb", "tinyhttp", "yaml_file_parse",]
+members = [ "chat", "connect_tcp", "hello_macro", "hello_macro_application", "hello_macro_derive", "jsonrpc", "reqwestexp", "tinydb", "tinyhttp", "tranning", "yaml_file_parse",]
 
 
 [workspace.package]
@@ -12,3 +12,9 @@ authors = ["hml"]
 log = "0.4.27"
 env_logger = "0.11.8"
 clap = { version = "4.5.37", features = [ "derive"]}
+reqwest = { version = "0.12.14", features = ["rustls-tls"] }
+tokio = { version = "1.44.2", features = ["full"] }
+futures = { version = "0.3.31", features = ["thread-pool"] }
+futures-util = "0.3.31"
+datetime = "0.5.2"
+chrono = "0.4.41"

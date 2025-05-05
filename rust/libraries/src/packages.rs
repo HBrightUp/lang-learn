@@ -21,4 +21,6 @@ pub enum CrateName{
     NumCpus,
     UriParse,
     Secp256k1,
+    Reqwest,
+    Futures,
 }

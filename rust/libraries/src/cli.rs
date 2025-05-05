@@ -6,6 +6,7 @@ use crate::{
     envlogger::logger, base64::base64, rand::rand, serde::serde, sha2::sha2,tokio::tokio,bytes::bytes,anyhow::anyhow,
     itertools::itertools,bitflags::bitflags, byteorder::byteorder,futureutil::future,randchacha::randchacha,chrono::chrono,
     hex::hex,indexmap::indexmap,jsonrpccore::jsonrpccore,signalshook::signalshook,numcpus::numcpus,uriparse::uriparse,secp256k1::secp256k1,
+    reqwest::reqwest,futures::futures,
 };
 
 pub  fn execute(name: &CrateName) {
@@ -74,6 +75,12 @@ pub  fn execute(name: &CrateName) {
         },
         CrateName::Secp256k1 => {
             secp256k1::enter();
+        },
+        CrateName::Reqwest => {
+            reqwest::enter();
+        },
+        CrateName::Futures => {
+            futures::enter();
         },
 
 

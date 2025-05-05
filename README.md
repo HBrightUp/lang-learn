@@ -1,1 +1,1 @@
-I like flowers
+The unexamined life is not worth living.
