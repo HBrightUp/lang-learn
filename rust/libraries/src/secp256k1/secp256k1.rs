@@ -45,7 +45,6 @@ fn genrate_eth_secret_and_address() {
      println!("Secret_key: {}", secret_key.display_secret());
      println!("pubkey_key: {:?}", public_key);
  
- 
      // serialize pubkey
      let pub_key_bytes = public_key.serialize_uncompressed();
      println!("Uncompressed serialize pubic key: {:?}", pub_key_bytes);
