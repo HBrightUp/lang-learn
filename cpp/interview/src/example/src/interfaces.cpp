@@ -5,5 +5,7 @@
 
 void interfaces_call() {
 
-    get_indexs_call();
+    //get_indexs_call();
+    //statistics_word_call();
+    manage_array_call();
 }
