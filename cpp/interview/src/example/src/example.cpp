@@ -4,6 +4,8 @@
 #include<map>
 #include<set>
 #include<algorithm>
+#include<cmath>
+#include<string.h>
 #include"../include/example.h"
 #include"../include/int_array.h"
 #include"../../algorithm/include/list.hpp"
@@ -247,12 +249,188 @@ void call_exp5() {
 }
 
 /***************************************exp-06 *************************** */
+template<typename T> 
+void swap(T& a, T& b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+
 void RightLoopMove(char *pstr, unsigned short steps) {
+
+    unsigned int len = strlen(pstr);
+    char* p1 = pstr;
+    char* p2 = pstr + len - steps;
+    char temp = 0;
+
+    for(unsigned int i = 0; i < steps; ++i) {
+        temp = *p1;
+        *p1++ = *p2;
+        *p2++ = temp;
+    }
+}
+
+void call_exp6() {
+    char str[] = "There is a small river in front of my house.";
+    const unsigned int steps = 6;
+    RightLoopMove(str, steps);
+    std::cout << str << std::endl;
+}
+
+/***************************************exp-07 *************************** */
+
+bool  IsRevStr( char *str) {
+    bool is_rev = true;
+    unsigned int len = strlen(str);
+
+    for(unsigned int i = 0; i < len/2; ++i) {
+        if (*(str + i) != *(str + len -i - 1)) {
+            is_rev = false;
+            break;
+        }
+    }
+
+    return is_rev;
+}
+
+void call_exp7() {
+
+    char str1[] = "98789";
+    std::cout << std::boolalpha;
+    std::cout << str1 << " is a Palindrome: " << IsRevStr(str1) << std::endl;
+
+    char str2[] = "987789";
+    std::cout << std::boolalpha;
+    std::cout << str2 << " is a Palindrome: " << IsRevStr(str2) << std::endl;
+
+    char str3[] = "987891";
+    std::cout << std::boolalpha;
+    std::cout << str3 << " is a Palindrome: " << IsRevStr(str3) << std::endl;
 
 }
 
-void call_exp06() {
-    char *str = "There is a small river in front of my house.";
-    const unsigned int steps = 8;
-    RightLoopMove(str, steps);
+/***************************************exp-08 *************************** */
+int str2int (const char *str) {
+  
+    unsigned int len = strlen(str);
+    unsigned int pos = 0;
+    if(*str == '-' || *str == '+') {
+        len = len - 1;
+        pos = 1;
+    }
+
+    const unsigned int base = 10;
+    unsigned int sum = 0;
+
+    for(int i = 0; i < len; ++i) {
+        sum += (*(str + pos + i) - '0') * std::pow( base , (len - i-1));    
+    }
+
+    if(*str == '-') {
+        sum = -sum;
+    }
+
+    return sum;
+}
+
+void call_exp8() {
+    char str1[] = "-3435";
+    std::cout << str2int(str1) << std::endl;
+
+    // char str2[] = "+5142";
+    // std::cout << str2int(str2) << std::endl;
+
+    // char str3[] = "223435";
+    // std::cout << str2int(str3) << std::endl;
+}
+
+/***************************************exp-09 *************************** */
+
+void int2str(const int& data, char *str) {
+    if (str == nullptr) {
+        return ;
+    }
+
+    bool is_postive = true;
+    int a = data;
+    if (a < 0) {
+        is_postive = false;
+        a = -a;
+    }
+
+    const unsigned int base = 10;
+    unsigned int len = 0;
+    
+    if (a < base) {
+        len = 1;
+    } else {
+        while(a) {
+            ++len;
+            a = a/base;
+        }
+    }
+
+    a = data < 0? -data : data;
+    char *p = nullptr;
+
+    if (is_postive) {
+        p = str + len ;
+    } else   {
+        p = str + len + 1;
+    }
+     
+    *p-- = '\0';
+
+    for(unsigned int i = 0; i < len; ++i) {
+        *p-- = a % base + '0';
+        a = a / base;
+    }
+
+    if(!is_postive) {
+        *p = '-';
+    }
+
+}
+
+void call_exp9() {
+    int a1 = -1234;
+    char s1[100];
+    int2str(a1, s1);
+    std::cout << s1 << std::endl;
+
+    int a2 = 26745553;
+    char s2[100];
+    memset(s2, sizeof(s2)/sizeof(char), 0);
+    int2str(a2, s2);
+    std::cout << s2 << std::endl;
+
+}
+
+/***************************************exp-10 *************************** */
+void strsort(char *str) {
+
+    char *p1 = str;
+    char *p2 = nullptr;
+    char temp;
+
+    while( *p1 != '\0') {
+        p2 = p1 + 1;
+        while(*p2 != '\0') {
+            if (*p1 > *p2) {
+                temp = *p1;
+                *p1 = *p2;
+                *p2 = temp;
+            }
+
+            ++p2;
+        }
+        ++p1;
+    }
+}
+
+void call_exp10() {
+    char str[] = "thisthrowclassgetjsi";
+    strsort(str);
+    std::cout << str << std::endl;
 }

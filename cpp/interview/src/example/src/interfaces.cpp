@@ -10,5 +10,9 @@ void interfaces_call() {
     //call_exp3();
     //call_exp4();
     //call_exp5();
-    call_exp6();
+    //call_exp6();
+    //call_exp7();
+    //call_exp8();
+    //call_exp9();
+    call_exp10();
 }

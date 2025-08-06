@@ -24,3 +24,20 @@ void call_exp5();
 //参数2：unsigned short steps 表示从第几个字符开始向右移动
 //void RightLoopMove(char *pstr, unsigned short steps);
 void call_exp6();
+
+// exp-07:如何判断一个字符串是否是回文串？
+//"回文数"是一种数字。如：98789, 这个数字正读是98789,倒读也是98789,正读倒读一样，所以这个数字就是回文数, 类似的 987789 也是.
+//int  IsRevStr(char *str);
+void call_exp7();
+
+// exp-08: 如何把数字字符串转换为整型数据？
+//int str2int (const char *str);
+void call_exp8();
+
+// exp-09: 如何把整型数据转换为字符串？
+// void  int2str(int data,char *str);
+void call_exp9();
+
+// exp-10: 如何对字符串进行排序？
+// void strsort(char *str);
+void call_exp10();
