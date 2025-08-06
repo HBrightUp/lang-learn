@@ -5,7 +5,10 @@
 
 void interfaces_call() {
 
-    //get_indexs_call();
-    //statistics_word_call();
-    manage_array_call();
+    //call_exp1();
+    //call_exp2();
+    //call_exp3();
+    //call_exp4();
+    //call_exp5();
+    call_exp6();
 }

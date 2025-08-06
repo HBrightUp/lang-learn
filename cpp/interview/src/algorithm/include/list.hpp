@@ -17,6 +17,7 @@ class MyList {
         ~MyList();
 
         void create_list(const T& data);
+        void push_back(const T& data);
         void insert(const unsigned int& pos, const T& data);
         void erase(const T& data);
         void update(const T& old_data, const T& new_data);
@@ -44,6 +45,25 @@ MyList<T>::~MyList() {
 template<class T>
 void MyList<T>::create_list(const T& data) {
     head = new Node(data);
+}
+
+template<class T>
+void MyList<T>::push_back(const T& data) {
+    Node<T>* p = new Node<T>(data);
+
+    Node<T>* temp = head;
+    if(temp == nullptr) {
+        head = p;
+        return ;
+    }
+
+    while(temp->next != nullptr) {
+        temp = temp->next;
+    }
+
+    temp->next = p;
+
+    return ;
 }
 
 template<class T>
