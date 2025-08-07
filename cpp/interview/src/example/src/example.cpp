@@ -463,3 +463,240 @@ void call_exp11() {
     char str[] = "bright is good, morning!";
     std::cout << DeleChar(str, 'o') << std::endl;
 }
+
+/***************************************exp-12 *************************** */
+void  Calculate(const char *str,int *max0,int *max1) {
+    if (str == nullptr) {
+        *max0 = *max1 = 0;
+        return ;
+    }
+
+    const char *p = str;
+    int temp_0, temp_1;
+
+    while (*p != '\0') {
+        temp_0 = 0;
+        temp_1 = 0;
+
+        while (*p == '0') {
+            ++temp_0;
+            ++p;
+        } 
+
+        if (temp_0 > *max0) {
+            *max0 = temp_0;
+        }
+
+        while (*p == '1') {
+            ++temp_1;
+            ++p;
+        } 
+
+        if (temp_1 > *max1) {
+            *max1 = temp_1;
+        }
+
+    }
+}
+
+void call_exp12() {
+    char str[] = "0101111111100000111";
+    int max0 = 0;
+    int max1 = 0;
+    
+    Calculate(str, &max0, &max1);
+    std::cout << "max0: " << max0 << ", max1: " << max1 << std::endl;
+}
+
+/***************************************exp-13 *************************** */
+
+char *deleteChar(char *str, unsigned int pos, unsigned int len) {
+
+    if (str == nullptr) 
+        return str;
+
+    if(strlen(str) < pos + len) 
+        return str;
+
+    char *p = str + pos - 1;
+
+    while( *p != '\0') {
+        *p = *(p + len);
+        ++p;
+    }
+
+    return str;
+}
+void call_exp13() {
+
+    char str[] = "afdfjgkglkgdg";
+    char* dest = deleteChar(str, 3, 4);
+    std::cout << str << std::endl;  // afkglkgdg
+}
+
+/***************************************exp-14 *************************** */
+
+char* strRev( char *str) {
+
+    if (str == nullptr) {
+        return str;
+    }
+
+    char temp;
+    unsigned int len = strlen(str);
+    for(int i = 0; i < len / 2; ++i) {
+        temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+
+    return str;
+}
+
+void call_exp14() {
+    char str[] = "abcdef";
+    std::cout << strRev(str) << std::endl;
+}
+
+/***************************************exp-15 *************************** */
+char* find_first_common_str( char *str1,  char *str2, char* dest) {
+    if ( str1 == nullptr || str2 == nullptr || dest == nullptr) {
+        return nullptr;
+    }
+
+    char *p1 = str1;
+    char *p2 = str2;
+    char *d = dest;
+    char *s1 = str1;
+    char *s2 = str2;
+    unsigned int len = 0;
+
+    while( *s1 != '\0') {
+        s2 = str2;
+        while(*s2 != '\0') {
+            p1 = s1;
+            p2 = s2;
+            len = 0;
+
+            while(*p1 == *p2) {
+                ++len;
+                ++p1; ++p2;
+            }
+            
+            if (len > 1) {
+                memcpy(d, p1 - len , len);
+                d[len] = '\0';
+
+                return dest;
+            }
+
+            ++s2;
+        }
+
+        ++s1;
+    }
+
+    return dest;
+}
+
+char* find_max_common_str( char *str1,  char *str2, char* dest) {
+    if ( str1 == nullptr || str2 == nullptr || dest == nullptr) {
+        return nullptr;
+    }
+
+    char *p1 = str1;
+    char *p2 = str2;
+    char *d = dest;
+    char *s1 = str1;
+    char *s2 = str2;
+    unsigned int len = 0;
+    unsigned int max_len = 0;
+
+    while( *s1 != '\0') {
+        s2 = str2;
+        while(*s2 != '\0') {
+            p1 = s1;
+            p2 = s2;
+            len = 0;
+
+            while(*p1 == *p2) {
+                ++len;
+                ++p1; ++p2;
+            }
+            
+            if (len > 1 && len > max_len) {
+                max_len = len;
+                memcpy(d, p1 - len , len);
+                d[len] = '\0';
+
+                s1 = s1 + len -1;
+                s2 = s2 + len -1;
+            }
+
+            ++s2;
+        }
+
+        ++s1;
+    }
+
+    return dest;
+}
+std::vector<std::string> find_all_common_str( char *str1,  char *str2) {
+    if ( str1 == nullptr || str2 == nullptr) {
+        return {};
+    }
+
+    char *p1 = str1;
+    char *p2 = str2;
+    char dest[100];
+    char *s1 = str1;
+    char *s2 = str2;
+    unsigned int len = 0;
+    std::vector<std::string> v;
+
+
+    while( *s1 != '\0') {
+        s2 = str2;
+        while(*s2 != '\0') {
+            p1 = s1;
+            p2 = s2;
+            len = 0;
+
+            while(*p1 == *p2) {
+                ++len;
+                ++p1; ++p2;
+            }
+            
+            if (len > 1 ) {
+          
+                memcpy(dest, p1 - len , len);
+                dest[len] = '\0';
+                v.push_back(dest);
+
+                s1 = s1 + len -1;
+                s2 = s2 + len -1;
+            }
+
+            ++s2;
+        }
+
+        ++s1;
+    }
+
+    return v;
+}
+
+void call_exp15() {
+    char *str1 = "this moring have me information that";
+    char *str2 = "never haveonething, comming here, inf";
+    char s[100];
+    memset(s, sizeof(s)/sizeof(char), 0);
+    std::cout << find_first_common_str(str1, str2, s) << std::endl; // "thi"
+
+    memset(s, sizeof(s)/sizeof(char), 0);
+    std::cout << find_max_common_str(str1, str2, s) << std::endl; // "ing h"
+
+    std::vector<std::string> v = find_all_common_str(str1, str2); // thi ing g h ave  inf on th 
+    print_vector(v); 
+
+}

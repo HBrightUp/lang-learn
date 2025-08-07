@@ -45,3 +45,20 @@ void call_exp10();
 // exp-11: 如何把字符串中某个指定的字符删除？
 //char * DeleChar(char *str,char c);
 void call_exp11();
+
+//exp-12: 如何找出01字符串中0与1出现的最大次数？
+// void  Calculate(const char *str,int *max0,int *max1);
+void call_exp12();
+
+//exp-13: 如何从字符串的某一个位置删除指定个数的字符？\
+// char  *deleteChar(char *str,int pos,int len);
+void call_exp13();
+
+// exp-14: 写一个函数把字符串反转
+// char* strRev(const char *str);
+void call_exp14();
+
+// exp-15: 写一个函数查找两个字符串中的第一个公共字符串、最长字串，所有公共字串
+// char* first_common_str( char *str1,  char *str2, char* dest); // 找出第一个公共字串;
+
+void call_exp15();
