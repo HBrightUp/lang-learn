@@ -434,3 +434,32 @@ void call_exp10() {
     strsort(str);
     std::cout << str << std::endl;
 }
+
+/***************************************exp-11 *************************** */
+char * DeleChar(char *str, const char c) {
+    if (str == nullptr) {
+        return nullptr;
+    }
+
+    char *p1 = str;
+    char *p2 = str;
+
+    while(*p1 != '\0') {
+        if (*p1 != c) {
+            *p2++ = *p1++;
+        } else {
+            ++p1;
+        }
+        
+    }
+
+    *p2 = '\0';
+
+    return str;
+}
+
+void call_exp11() {
+
+    char str[] = "bright is good, morning!";
+    std::cout << DeleChar(str, 'o') << std::endl;
+}

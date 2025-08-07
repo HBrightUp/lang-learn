@@ -41,3 +41,7 @@ void call_exp9();
 // exp-10: 如何对字符串进行排序？
 // void strsort(char *str);
 void call_exp10();
+
+// exp-11: 如何把字符串中某个指定的字符删除？
+//char * DeleChar(char *str,char c);
+void call_exp11();
