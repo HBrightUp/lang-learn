@@ -1,10 +1,10 @@
 #include<iostream>
-#include"../include/algorithm_test.h"
-#include"../include/list.hpp"
+#include"../include/algorithm.h"
+#include"../../structures/include/list.hpp"
 
 
 
-void AlgoTest::test_mylist() {
+void test_mylist() {
 
     MyList<int> list;
 
@@ -26,4 +26,9 @@ void AlgoTest::test_mylist() {
 
     list.reverse();
     list.print();
+}
+
+void call_algorithm() {
+    test_mylist();
+    
 }

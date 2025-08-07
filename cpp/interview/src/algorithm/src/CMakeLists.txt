@@ -5,7 +5,7 @@ file(GLOB HEADERS "../include/*.h")
 
 add_library( algorithm 
 
-    algorithm_test.cpp 
+    algorithm.cpp 
     ${HEADERS}
 )
 

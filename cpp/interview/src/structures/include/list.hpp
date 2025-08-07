@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+#include<vector>
 
 template <class T>
 concept integral = std::is_integral_v<T>;
@@ -22,6 +24,7 @@ class MyList {
         void erase(const T& data);
         void update(const T& old_data, const T& new_data);
         Node<T>* reverse();
+        std::vector<T> find_mid_data();
         void print();
 
     private:
@@ -210,4 +213,35 @@ void MyList<T>::clear() {
     }
 
     return ;
+}
+
+template<class T>
+std::vector<T> MyList<T>::find_mid_data() {
+
+    if (head == nullptr || head->next == nullptr || head->next->next == nullptr) {
+        return {};
+    }
+
+    Node<T> *p1 = head->next->next;
+    Node<T> *p2 = head;
+    std::vector<T> v;
+
+    while(p1 != nullptr) {
+        p2 = p2->next;
+
+        if (p1->next == nullptr) {
+            v.push_back(p2->data);
+            break;
+        }
+
+        if (p1->next->next == nullptr) {
+            v.push_back(p2->data);
+            v.push_back(p2->next->data);
+            break;
+        }
+
+        p1 = p1->next->next;
+    }
+
+    return v;
 }

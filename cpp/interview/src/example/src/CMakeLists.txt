@@ -6,7 +6,6 @@ file(GLOB HEADERS "../include/*.h")
 add_library( example 
 
     example.cpp 
-    interfaces.cpp
     int_array.cpp
     ${HEADERS}
 )

@@ -6,9 +6,10 @@
 #include<algorithm>
 #include<cmath>
 #include<string.h>
+#include"../../common/include/template.hpp"
 #include"../include/example.h"
 #include"../include/int_array.h"
-#include"../../algorithm/include/list.hpp"
+#include"../../structures/include/list.hpp"
 
   
   std::vector<int> getInddexs_methon1( const std::vector<int>& nums, const int& target) {
@@ -249,12 +250,12 @@ void call_exp5() {
 }
 
 /***************************************exp-06 *************************** */
-template<typename T> 
-void swap(T& a, T& b) {
-    T temp = a;
-    a = b;
-    b = temp;
-}
+// template<typename T> 
+// void swap(T& a, T& b) {
+//     T temp = a;
+//     a = b;
+//     b = temp;
+// }
 
 
 void RightLoopMove(char *pstr, unsigned short steps) {
@@ -559,16 +560,16 @@ void call_exp14() {
 }
 
 /***************************************exp-15 *************************** */
-char* find_first_common_str( char *str1,  char *str2, char* dest) {
+char* find_first_common_str( const char *str1,  const char *str2, char* dest) {
     if ( str1 == nullptr || str2 == nullptr || dest == nullptr) {
         return nullptr;
     }
 
-    char *p1 = str1;
-    char *p2 = str2;
+    const char *p1 = str1;
+    const char *p2 = str2;
     char *d = dest;
-    char *s1 = str1;
-    char *s2 = str2;
+    const char *s1 = str1;
+    const char *s2 = str2;
     unsigned int len = 0;
 
     while( *s1 != '\0') {
@@ -599,16 +600,16 @@ char* find_first_common_str( char *str1,  char *str2, char* dest) {
     return dest;
 }
 
-char* find_max_common_str( char *str1,  char *str2, char* dest) {
+char* find_max_common_str( const char *str1, const char *str2, char* dest) {
     if ( str1 == nullptr || str2 == nullptr || dest == nullptr) {
         return nullptr;
     }
 
-    char *p1 = str1;
-    char *p2 = str2;
+    const char *p1 = str1;
+    const char *p2 = str2;
     char *d = dest;
-    char *s1 = str1;
-    char *s2 = str2;
+    const char *s1 = str1;
+    const char *s2 = str2;
     unsigned int len = 0;
     unsigned int max_len = 0;
 
@@ -641,16 +642,16 @@ char* find_max_common_str( char *str1,  char *str2, char* dest) {
 
     return dest;
 }
-std::vector<std::string> find_all_common_str( char *str1,  char *str2) {
+std::vector<std::string> find_all_common_str( const char *str1, const char *str2) {
     if ( str1 == nullptr || str2 == nullptr) {
         return {};
     }
 
-    char *p1 = str1;
-    char *p2 = str2;
+    const char *p1 = str1;
+    const char *p2 = str2;
     char dest[100];
-    char *s1 = str1;
-    char *s2 = str2;
+    const char *s1 = str1;
+    const char *s2 = str2;
     unsigned int len = 0;
     std::vector<std::string> v;
 
@@ -687,8 +688,8 @@ std::vector<std::string> find_all_common_str( char *str1,  char *str2) {
 }
 
 void call_exp15() {
-    char *str1 = "this moring have me information that";
-    char *str2 = "never haveonething, comming here, inf";
+    const char *str1 = "this moring have me information that";
+    const char *str2 = "never haveonething, comming here, inf";
     char s[100];
     memset(s, sizeof(s)/sizeof(char), 0);
     std::cout << find_first_common_str(str1, str2, s) << std::endl; // "thi"
@@ -699,4 +700,169 @@ void call_exp15() {
     std::vector<std::string> v = find_all_common_str(str1, str2); // thi ing g h ave  inf on th 
     print_vector(v); 
 
+}
+
+/************************  exp-16 ****************************/
+int StrStr(const char *src, const char *sub) {
+    if (src == nullptr || sub == nullptr) {
+        return -1;
+    }
+
+    const char *s1 = src;
+    const char *s3 = src;
+    const char* s2 = sub;
+    unsigned int pos = -1;
+
+    while(*s1) {
+
+        s2 = sub;
+        s3 = s1;
+        while(*s2) {
+            if (*s2 != *s3) {
+                break;
+            }
+
+            ++s2;++s3;
+        }
+
+        if (*s2 == '\0') {
+            pos = s1 - src - 1;
+        }
+
+        ++s1;
+    }
+
+    return pos;
+}
+
+void call_exp16() {
+    const char *pStr = "abcdefghijklmn";
+    const char *pDes = "ghi";
+    const char *pSec = "sec";
+
+     std::cout << StrStr(pStr, pDes) << std::endl;  // 5
+     std::cout << StrStr(pStr, pSec) << std::endl;  // -1
+     std::cout << StrStr(pStr, NULL) << std::endl;  // -1
+     std::cout << StrStr(NULL, pSec) << std::endl;  // -1
+}
+
+/************************  exp-17 ****************************/
+char* replace_str(const char *str, const char *sub1, const char *sub2, char *output) {
+    if (str == nullptr || sub1 == nullptr || sub2 == nullptr || output == nullptr) {
+        return nullptr;
+    }
+
+    const char *s = str;
+    const char *s1 = sub1;
+    const char *s2 = sub2;
+    char * out = output;
+    unsigned int s1_len = strlen(sub1);
+    unsigned int s2_len = strlen(sub2);
+
+    while(*str) {
+        s = str;
+        s1 = sub1;
+
+        while(*s == *s1) {
+            ++s;++s1;
+        }
+
+        if (*s1 != '\0') {
+            *out++ = *str++;
+        } else {
+            memcpy(out, s2, s2_len);
+            out = out + s2_len;
+            str = str + s1_len; 
+
+        }
+    }
+
+    *out = 0;
+
+    return output;
+}
+
+void call_exp17() {
+    const char* str = "abcdefghijklabcdefstuvwxyz";
+    const char* str1 = "abcdef";
+    const char* str2 = "fffbb";  
+
+     char* outPut = (char*)malloc(sizeof(char) * 50);
+     memset(outPut, sizeof(char) * 50, 0);
+     std::cout << replace_str(str, str1, str2, outPut) << std::endl; // fffbbfghijklfffbbfstuvwxyz
+     free(outPut);  
+}
+
+/******************************* exp-18 ***********************************/
+bool check_cpu() {
+    union w
+    {
+        int a; 
+        char b;
+    }c;
+
+    c.a = 1;
+
+    return c.b == 1;
+    
+}
+
+void call_exp18() {
+    std::cout << std::boolalpha << "Is little-endian: " << check_cpu() << std::endl;
+}
+/******************************* exp-19 ***********************************/
+
+std::tuple<unsigned, unsigned> max_divisor(unsigned int n1, unsigned int n2) {
+
+    int  max_divisor, min_multiple;
+    int  m, n;
+
+    if (n1 < n2)
+    {
+        swap(n1, n2);
+    }
+     
+    max_divisor = n1;
+    n = n2;
+    while (n != 0)
+    {
+        m = max_divisor % n;
+        max_divisor = n;
+        n = m;
+    }
+        
+    min_multiple = n1 * n2 / max_divisor;
+
+    return std::tie(max_divisor, min_multiple);
+}
+
+void call_exp19() {
+    const unsigned int a = 120;
+    const unsigned int b = 72;
+    std::tuple<unsigned, unsigned> t = max_divisor(a,b); 
+    std::cout << "max divisor: " << std::get<0>(t) << std::endl;        //  24
+    std::cout << "min multiple: " << std::get<1>(t) << std::endl;       //  360
+
+}
+
+/*****************************************  exp-20  ****************************** */
+void call_exp20() {
+    MyList<int> list;
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.print();
+    std::vector<int> v = list.find_mid_data();
+    print_vector(v);
+
+    v.clear();
+    list.push_back(4);
+    list.print();
+    print_vector(list.find_mid_data());
+}
+
+
+
+void call_example() {
+    call_exp20();
 }

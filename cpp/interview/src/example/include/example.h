@@ -59,6 +59,29 @@ void call_exp13();
 void call_exp14();
 
 // exp-15: 写一个函数查找两个字符串中的第一个公共字符串、最长字串，所有公共字串
-// char* first_common_str( char *str1,  char *str2, char* dest); // 找出第一个公共字串;
-
+// char* find_first_common_str( char *str1,  char *str2, char* dest); // 找出第一个公共字串;
+// char* find_max_common_str( char *str1,  char *str2, char* dest); // 查找最长的公共字符串
+// std::vector<std::string> find_all_common_str( char *str1,  char *str2); // 查找出所有相同的字符串
 void call_exp15();
+
+// exp-16: 写一个函数在字符串N中查找第一次出现子串M的位置
+// int StrStr(const char *src, const char *sub);
+void call_exp16();
+
+// exp-17: 写一个函数把字符串A中的B字符子串用字符串C进行替换
+//char* replace(const char *str, const char *sub1, const char *sub2, char *output);
+void call_exp17();
+
+// exp-18: 判断机器的大小端字节
+void call_exp18();
+
+// exp-19: 用户输入两个整数，求最大公约数和最大公倍数
+void call_exp19();
+
+// exp-20: 查找链表的中间节点
+void call_exp20();
+
+
+
+
+void call_example();
