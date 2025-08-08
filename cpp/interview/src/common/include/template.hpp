@@ -1,6 +1,7 @@
 #pragma once
 
 #include<iostream>
+#include<vector>
 
 template<typename T> 
 void swap(T& a, T& b) {
@@ -18,3 +19,12 @@ void print_array(const T arr[], const unsigned int len) {
 
     std::cout << std::endl;
 } 
+
+template<typename T>
+void print_vector(const std::vector<T>& v) {
+    for(const auto& d : v) {
+        std::cout << d << " ";
+    }
+
+    std::cout << std::endl;
+}

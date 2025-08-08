@@ -150,14 +150,6 @@ void call_exp4() {
     list.print();
 }
 /**********************  exp -05 ****************************/
-template<typename T>
-void print_vector(const std::vector<T>& v) {
-    for(const auto& d : v) {
-        std::cout << d << " ";
-    }
-
-    std::cout << std::endl;
-}
 
 template<typename T>
 void print_multiset(const std::multiset<T>& v) {

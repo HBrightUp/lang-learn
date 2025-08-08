@@ -9,7 +9,7 @@ void selection_sort(int arr[], const unsigned len);
 
 void insertion_sort(int arr[], const unsigned len);
 
-void quick_sort(int arr[], const unsigned left, const unsigned right);
+void quick_sort_non_recursive(std::vector<int>& arr);
 
 template <typename T>
 void shell_sort(T arr[], unsigned len) {
@@ -26,4 +26,13 @@ void shell_sort(T arr[], unsigned len) {
         }
     }
 }
+
+void heap_sort(int arr[], unsigned len);
+
+void merge_sort_non_recursive(int* a, int n);
+
+void bucket_sort(int arr[], unsigned len);
+
+
+void radix_sort(std::vector<int>& arr);
 
