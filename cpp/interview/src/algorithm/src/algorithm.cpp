@@ -5,6 +5,7 @@
 #include"../../common/include/generate.h"
 #include"../include/sort.h"
 #include"../../common/include/template.hpp"
+#include"../include/stl.h"
 
 
 
@@ -102,7 +103,12 @@ void test_sort() {
     
 }
 
+void test_stl() {
+    test_vector();
+}
+
 void call_algorithm() {
     //test_mylist();
-    test_sort();
+    //test_sort();
+    test_stl();
 }

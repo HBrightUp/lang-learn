@@ -6,6 +6,7 @@ file(GLOB HEADERS "../include/*.h")
 add_library( algorithm 
     algorithm.cpp 
     sort.cpp
+    stl.cpp
     ${HEADERS}
 )
 
