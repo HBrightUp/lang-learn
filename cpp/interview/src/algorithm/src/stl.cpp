@@ -12,6 +12,7 @@
 #include<array>
 #include<deque>
 #include<queue>
+#include<random>
 #include"../../common/include/template.hpp"
 #include "../include/stl.h"
 
@@ -457,6 +458,156 @@ void test_priority_queue() {
 
 }
 
+void test_stl_algorithm() {
+
+    std::multiset<int> s1 = {55, 46, 27, 46,5, 62, 74, 34, 753, 34, 27, 55, 42,42,42,46}; 
+    print_stl(s1);  //  5 27 27 34 34 42 42 42 46 46 46 55 55 62 74 753
+
+    std::vector<int> v1 = {32, 65, 67, 42, 27, 34, 46, 87};
+    std::vector<int> v2 = {22, 65, 67, 42, 27, 34, 47, 88, 88, 32};
+
+    //  1. find(begin, end, value)
+    auto it1 = std::find(s1.begin(), s1.end (), 27);
+    if (it1 != s1.end()) {
+        std::cout << "find: " << *it1 << std::endl;  //  find: 27
+    }
+
+    // 2. find_first_of(begin, end, begin2, end2)
+    auto it2 = std::find_first_of(s1.begin(), s1.end(), v1.begin(), v1.end());
+    if (it2 != s1.end()) {
+        std::cout << "find first element: " << *it2 << std::endl;    //  find first element: 27
+    }
+
+    //find_end(begin, end, begin2, end2)    // 
+    // auto it3 = std::find_end(s1.begin(), s1.end(), v1.begin(), v1.end());
+    //  if (it3 != s1.end()) {
+    //     std::cout << "find end: " << *it3 << std::endl;    //  
+    // }upper_bound
+
+    //find_if(begin. end, func)
+    auto it4 = std::find_if(s1.begin(), s1.end(), []( const int& a) {
+        return a % 2 == 0;
+    });
+    if (it4 != s1.end()) {
+        std::cout << "it4: " << *it4 << std::endl;  //  34
+    }
+    
+    //  search(begin, end, begin2, end2)
+    auto it5 = std::search(v1.begin(), v1.end(), v2.begin() +1, v2.begin()+4);
+    if (it5 != v1.end()) {
+        std::cout << "it5: " << *it5 << std::endl;  //  65
+        std::cout << it5 - v1.begin() << std::endl; //  1
+    }
+
+    //search_n(begin, end, n, value)
+    auto it6 = search_n(v2.begin(), v2.end(), 2, 88);
+    if(it6 != v2.end()) {
+        std::cout << it6 - v2.begin() << std::endl; //  7
+    }
+
+    //count(begin, end, value)
+    std::cout << std::count(s1.begin(), s1.end(), 34) << std::endl; //  2
+
+    //lower_bound(begin, end, value)
+    auto it7 = std::lower_bound(v2.begin(), v2.end(), 88);
+    if (it7 != v1.end()) {
+        std::cout << "it5: " << *it7 << std::endl;  //  88
+        std::cout << it7 - v2.begin() << std::endl; //  7
+    }
+
+    //upper_bound(begin, end, value)
+    auto it8 = std::upper_bound(v1.begin(), v1.end(), 32);
+    if (it8 != v1.end()) {
+        std::cout << *it8 << std::endl; //  34
+        std::cout << it8 - v1.begin() << std::endl; //  5
+    }
+    //count_if(begin, end, func)
+    std::cout << std::count_if(v1.begin(), v1.end(), [](int a) {
+        return a % 2 == 0;
+    }) << std::endl;            //  4
+
+    //copy(begin, end, begin2)
+    std::vector<int> v3;
+    v3.resize(10);  //  need alloc memory here, otherwise core dump 
+     print_vector(v2);  //  22 65 67 42 27 34 47 88 88 32 
+    std::copy(v2.begin(), v2.begin() + 4, v3.begin() ); 
+    print_vector(v3);   //  22 65 67 42 0 0 0 0 0 0 
+
+    //transform(begin, end, begin2, func)
+    v3.clear();
+    v3.resize(10);  //here need alloc memory again.
+    std::transform(v2.begin(), v2.end(), v3.begin(), [](int a) {
+        return a * a;
+    });
+    print_vector(v3);   // 484 4225 4489 1764 729 1156 2209 7744 7744 1024
+
+    //replace(begin, end, value1, value2)
+    std::replace(v3.begin(), v3.end(),  7744, 88);
+    print_stl(v3);  //  484 4225 4489 1764 729 1156 2209 88 88 1024
+
+    //fill(begin, end, value)
+    std::fill(v3.begin(), v3.begin() + 3, 12);
+    print_stl(v3);  //  12 12 12 1764 729 1156 2209 88 88 1024
+
+
+    //fill_n(begin, n, value)
+    std::fill_n(v3.begin(), 2, 10);
+    print_stl(v3);  // 10 10 12 1764 729 1156 2209 88 88 1024
+
+    //generate(begin, n, rand)
+    v3.clear();
+    v3.resize(15);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(1, 100);
+    std::generate(v3.begin(), v3.end(), [&distrib, &gen] () {
+        return distrib(gen);
+    });
+    print_stl(v3);  //  99 36 93 17 95 47 42 31 80 18 75 78 51 8 79 
+
+
+    //remove(begin, end)
+    v3 = {99, 36, 93, 17, 95, 47, 42, 31, 80, 18, 75, 78, 51, 8, 79 };
+    std::remove(v3.begin() + 2, v3.begin() + 4, 93);
+    print_stl(v3);  //  99 36 17 17 95 47 42 31 80 18 75 78 51 8 79
+
+    //unique(begin, end)
+    print_stl(v2);  //  22 65 67 42 27 34 47 88 88 32
+    std::unique(v2.begin(), v2.end());
+    print_stl(v2);  //  22 65 67 42 27 34 47 88 32 32
+
+    //remove_if(begin, end, func)
+    auto it10 = std::remove_if(v2.begin(), v2.end(), [](int a) {
+        return a % 2 == 1;
+    }); //  here need get it10 to confrim removed data.
+    print_stl(v2);  //  22 42 34 88 32 32 47 88 32 32   
+    std::cout << v2.size() << std::endl;    //  10
+    std::cout << *it10 << std::endl;    //  47
+
+    //replace_if(begin, end, func, value2)
+    //remove_copy(begin, end, dest)
+    //remove_copy_if(begin, end, dest, func)
+    //replace_copy(begin, end, dest, value1, value2)
+    //replace_copy_if(begin, end, dest, func, value2)
+    //sort(begin, end)
+    //stable_sort(begin, end, func)
+    //partial_sort(begin, mid, end)
+    //random_shuffle(begin, end)
+    //reverse(begin, end)
+    //rotate(begin, mid, end)
+    //merge(begin, end, begin2, end2, nbegin)
+    //reverse_copy(begin, end, dest)
+    //rotate_copy(begin, mid, end, dest)
+    //equal(begin, end, begin2, end2)
+    //includes(begin, end, begin2, end2)
+    //max_element(begin, end)
+    //min_element(begin, end)
+    //mismatch(begin, end, begin2, end2)
+
+
+}
+
+
 void test_stl() {
 
     //test_vecotr();
@@ -471,5 +622,6 @@ void test_stl() {
     //test_stack();
     //test_deque();
     //test_queue();
-    test_priority_queue();
+    //test_priority_queue();
+    test_stl_algorithm();
 }
