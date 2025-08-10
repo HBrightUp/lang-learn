@@ -28,3 +28,12 @@ void print_vector(const std::vector<T>& v) {
 
     std::cout << std::endl;
 }
+
+template<typename T>
+void print_stl(const T& v) {
+    for(const auto& d : v) {
+        std::cout << d << " ";
+    }
+
+    std::cout << std::endl;
+}

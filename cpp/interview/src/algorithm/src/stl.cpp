@@ -12,7 +12,7 @@
 
 /******************************* vector *************************** */
 
-void init_vecotr() {
+void test_vecotr() {
 
     std::vector<int> v1;
     v1.assign(10, 8);
@@ -68,7 +68,7 @@ void init_vecotr() {
     print_vector(v1);   //  11 12 13 14 15 16
     print_vector(v2);   //  16 15 14 13 12 11 7 6 5 4 3 2
 
-    for(const std::vector<int>::const_reverse_iterator it = v2.rbegin(); it != v2.rend(); ++it) {
+    for( std::vector<int>::const_reverse_iterator it = v2.rbegin(); it != v2.rend(); ++it) {
         std::cout << *it << std::endl;  //  2 3 4 ...  14 15 16
     }
 
@@ -83,8 +83,46 @@ void init_vecotr() {
     // capacity result: 0 -> 1 -> 2 -> 4 -> 8 -> 16 -> 32
 }
 
+void test_list() {
+
+
+    std::list<int> l1;
+    l1.assign(6, 8);    //  8 8 8 8 8 8 
+    print_stl(l1);  
+
+    l1.clear();
+
+    l1 = {1,2,3,4,5,6};
+    print_stl(l1);  //  1 2 3 4 5 6
+
+    l1.emplace_front(20);
+    print_stl(l1);  //  20 1 2 3 4 5 6 
+
+    l1.erase(l1.begin());
+    print_stl(l1);  //  1 2 3 4 5 6
+
+    l1.insert(l1.begin(), 12);
+
+    std::list<int> l2 = {25, 64};
+    l1.merge(l2);
+    print_stl(l1);  //  12 1 2 3 4 5 6 25 64
+
+    l1.sort();
+    print_stl(l1);
+
+    l1.push_back(6);
+    print_stl(l1);
+    l1.sort();
+    l1.unique();
+    print_stl(l1);
+
+    l1.
+
+}
+
+
 void test_vector() {
 
-    init_vecotr();
-
+    //test_vecotr();
+    test_list();
 }
