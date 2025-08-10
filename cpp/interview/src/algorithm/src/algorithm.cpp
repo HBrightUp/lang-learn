@@ -103,9 +103,6 @@ void test_sort() {
     
 }
 
-void test_stl() {
-    test_vector();
-}
 
 void call_algorithm() {
     //test_mylist();
