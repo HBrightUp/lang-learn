@@ -8,6 +8,10 @@
 #include<deque>
 #include<stack>
 #include<list>
+#include<forward_list>
+#include<array>
+#include<deque>
+#include<queue>
 #include"../../common/include/template.hpp"
 #include "../include/stl.h"
 
@@ -338,6 +342,121 @@ void test_multiset() {
     print_stl(s);   //  12 35 89
 }
 
+
+void test_forward_list() {
+
+    std::forward_list<int> l1 = {2,3,7,3,62,3,6,1};
+
+    print_stl(l1);
+
+    //l1.assign(12,12);
+    l1.emplace_front(58);
+    print_stl(l1);  //  58 2 3 7 3 62 3 6 1 
+
+    l1.remove_if([](int a) {
+        return a % 2 == 0;
+    });
+    print_stl(l1);  //3 7 3 3 1 
+
+    l1.unique();
+    print_stl(l1);  //  3 7 3 1
+    
+}
+
+void test_array() {
+    std::array<int, 5> a1 = {2,6,3,9,7};
+    print_stl(a1);
+
+    a1.fill(3);
+    print_stl(a1);//    3 3 3 3 3
+
+    std::cout << a1.empty() << a1.size() << std::endl;  //  05
+
+}
+
+void test_stack() {
+
+    std::stack<int> s;
+
+    s.emplace(12);
+    s.emplace(32);
+    s.push(23);
+
+
+    std::cout << s.empty() << s.size() << s.top() << std::endl; //  0323
+    s.pop();
+    std::cout << s.top() << std::endl;  //  32
+}
+
+void test_deque() {
+    std::deque<int> d;
+
+    d.assign(5,6);
+    print_stl(d);   //  6 6 6 6 6
+
+    d = {2,3,4,5,6};
+    print_stl(d);   //  2 3 4 5 6 
+    
+    d.emplace(d.begin() + 3, 23);
+    print_stl(d);   //  2 3 4 23 5 6
+
+    std::cout << d.front() << std::endl;    //  2
+
+    d.pop_back();
+    print_stl(d);   //  2 3 4 23 5 
+
+    std::cout << d.size() << std::endl; /// 5
+
+    d.shrink_to_fit();
+}
+
+void test_queue() {
+    std::queue<int> q;
+
+    q.emplace(12);
+    q.push(32);
+    q.push(56);
+
+    std::cout << q.size() << q.front() << std::endl;    //  312
+
+    q.pop();
+    std::cout << q.front() << std::endl;    //32
+}
+
+void test_priority_queue() {
+
+    struct Friut {
+        std::string name;
+        int price;
+
+        Friut(std::string n, int p):name(n), price(p) {}
+        
+        bool operator<(const Friut& other) const {
+            return price < other.price;
+        }
+
+        
+
+    };
+
+    std::priority_queue< Friut> q;
+
+    Friut f1("apple", 8);
+    Friut f2("peach", 5);
+    Friut f3("watermelon", 4);
+
+    q.emplace(f1);
+    q.push(f2);
+    q.push(f3);
+
+
+    while(!q.empty()) {
+        std::cout << "name: " << q.top().name << ", price: " << q.top().price << std::endl;  
+        q.pop();
+    }   
+
+}
+
 void test_stl() {
 
     //test_vecotr();
@@ -346,5 +465,11 @@ void test_stl() {
     //test_multimap();
     //test_unordered_map();
     //test_set();
-    test_multiset();
+    //test_multiset();
+    //test_forward_list();
+    //test_array();
+    //test_stack();
+    //test_deque();
+    //test_queue();
+    test_priority_queue();
 }

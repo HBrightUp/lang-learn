@@ -49,6 +49,7 @@
         "sstream": "cpp",
         "set": "cpp",
         "cstring": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "forward_list": "cpp"
     }
 }
