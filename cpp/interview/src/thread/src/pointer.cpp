@@ -37,13 +37,18 @@ void call_unique() {
 
 void call_share() {
 
-    std::shared_ptr<Base> pb(new Derived());
+    //std::shared_ptr<Base> pb(new Derived());
+    std::shared_ptr<Base> pb = std::make_shared<Derived>();
+
+    std::weak_ptr<Base> w1 = pb;
 
     auto p1 = pb;
 
     auto p2 = pb;
 
     std::cout << pb.use_count() << std::endl;   //  3
+    std::cout << w1.use_count() << std::endl;   //3
+    
 
     p1.reset();
 
@@ -72,6 +77,12 @@ void call_share() {
     p3.reset();
     std::cout << p2.use_count() << std::endl;   //  1
     std::cout << "leave here" << std::endl;
+
+    if (auto temptr = w1.lock()) {
+        temptr->print();    //  Derived class
+    }
+
+    std::cout << w1.expired() << std::endl; //  0   
 
     //  Derive destructor
     //  Base destruct

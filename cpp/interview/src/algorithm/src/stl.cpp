@@ -635,8 +635,9 @@ void test_stl_algorithm() {
     print_stl(v2);  //  2 3 6 8 7 9
 
     //random_shuffle(begin, end)
-    std::random_shuffle(v2.begin(), v2.end());
+    std::shuffle(v2.begin(), v2.end(), gen);
     print_stl(v2);  //  7 8 3 6 2 9
+
 
     //reverse(begin, end)
     std::reverse(v2.begin(), v2.end());
