@@ -7,6 +7,7 @@
 #include"../include/thread.h"
 #include"../include/thread_pool.hpp"
 #include"../include/convert.h"
+#include"../include/pointer.h"
 
 
 
@@ -205,6 +206,6 @@ void call_thread() {
 
 
     //test_thread_9();
-
-    call_convert();
+    //call_convert();
+    call_pointer();
 }
