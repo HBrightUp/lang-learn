@@ -479,10 +479,10 @@ void test_stl_algorithm() {
     }
 
     //find_end(begin, end, begin2, end2)    // 
-    // auto it3 = std::find_end(s1.begin(), s1.end(), v1.begin(), v1.end());
-    //  if (it3 != s1.end()) {
-    //     std::cout << "find end: " << *it3 << std::endl;    //  
-    // }upper_bound
+    auto it3 = std::find_end(s1.begin(), s1.end(), v1.begin(), v1.end());
+     if (it3 != s1.end()) {
+        std::cout << "find end: " << *it3 << std::endl;    //  
+    }
 
     //find_if(begin. end, func)
     auto it4 = std::find_if(s1.begin(), s1.end(), []( const int& a) {
@@ -585,24 +585,103 @@ void test_stl_algorithm() {
     std::cout << *it10 << std::endl;    //  47
 
     //replace_if(begin, end, func, value2)
+    std::replace_if(v2.begin(), v2.end(), [](int a) {
+        return a == 32;
+    }, 9);
+    print_stl(v2);  //  22 42 34 88 9 9 47 88 9 9
+
     //remove_copy(begin, end, dest)
+    std::remove_copy(v2.begin(), v2.begin() + 6, v2.end() -2, 42);
+    print_stl(v2);  //  22 42 34 88 9 9 47 88 22 34
+
     //remove_copy_if(begin, end, dest, func)
+    std::vector<int> v4;
+    v4.resize(16);
+    v4.reserve(10);
+    std::remove_copy_if(v2.begin(), v2.end(), v4.begin(), [](int a) {
+        return a % 2 == 0;
+    });
+    std::cout << v4.size() << std::endl;
+    print_stl(v4);  //  9 9 47 0 0 0 0 0 0 0 0 0 0 0 0 0
+
     //replace_copy(begin, end, dest, value1, value2)
+    std::vector<int> v5;
+    v5.resize(11);
+    std::replace_copy(v2.begin(), v2.end(), v5.begin(), 9, 10);
+    print_stl(v5);  //  22 42 34 88 10 10 47 88 22 34 0 0 0 0 0 0
+
     //replace_copy_if(begin, end, dest, func, value2)
+    v5.clear();
+    v5.resize(12);
+    std::replace_copy_if(v2.begin(), v2.end(), v5.begin(), [](int a) {
+        return a % 2 == 0;
+    }, 25);
+    print_stl(v2);  //  22 42 34 88 9 9 47 88 22 34
+    print_stl(v5);  //  25 25 25 25 9 9 47 25 25 25 0 0
+
+
     //sort(begin, end)
+    std::sort(v2.begin(), v2.end());
+    print_stl(v2);  //  9 9 22 22 34 34 42 47 88 88
+
     //stable_sort(begin, end, func)
+    std::stable_sort(v5.begin(), v5.end());
+    print_stl(v5);  //  0 0 9 9 25 25 25 25 25 25 25 47
+
     //partial_sort(begin, mid, end)
+    v2.clear(); v2.resize(6);
+    v2 = {2, 8, 3, 6, 7, 9};
+    std::partial_sort(v2.begin(), v2.begin() + 3, v2.end());
+    print_stl(v2);  //  2 3 6 8 7 9
+
     //random_shuffle(begin, end)
+    std::random_shuffle(v2.begin(), v2.end());
+    print_stl(v2);  //  7 8 3 6 2 9
+
     //reverse(begin, end)
+    std::reverse(v2.begin(), v2.end());
+    print_stl(v2);  //  9 2 6 3 8 7
+
     //rotate(begin, mid, end)
+    std::rotate(v2.begin(), v2.begin() +3, v2.end());
+    print_stl(v2);  //  3 8 7 9 2 6
+
     //merge(begin, end, begin2, end2, nbegin)
+    std::vector<int> v6;
+    v6.resize(20);
+    std::merge(v2.begin(), v2.end(), v5.begin(), v5.end(), v6.begin());
+    print_stl(v6);  //  0 0 3 8 7 9 2 6 9 9 25 25 25 25 25 25 25 47 0 0
+
     //reverse_copy(begin, end, dest)
+    v6.clear(); v6.resize(12);
+    std::reverse_copy(v2.begin(),v2.end(), v6.begin());
+    print_stl(v6);  //  6 2 9 7 8 3 0 0 0 0 0 0
+
     //rotate_copy(begin, mid, end, dest)
+    v6.clear(); v6.resize(12);
+    std::rotate_copy(v2.begin(), v2.begin() + 3, v2.end(), v6.begin());
+    print_stl(v6);  //  9 2 6 3 8 7 0 0 0 0 0 0
+
     //equal(begin, end, begin2, end2)
+    bool is_equal = std::equal(v2.begin(), v2.end(), v6.begin(), v6.begin() + 4);
+    std::cout << is_equal << std::endl; //  0
+
     //includes(begin, end, begin2, end2)
+    std::vector<int> v7 = {9,2, 6, 3, 8};
+    std::cout << std::includes(v6.begin(), v6.end(), v7.begin(), v7.end()) << std::endl;    //  1
+
     //max_element(begin, end)
+    auto it11 = std::max_element(v6.begin(), v6.end());
+    std::cout << *it11 << std::endl;    //  9
+
     //min_element(begin, end)
+    auto it12 = std::min_element(v6.begin(), v6.end());
+    std::cout << *it12 << std::endl;    //  0
+
     //mismatch(begin, end, begin2, end2)
+    auto it13 = std::mismatch(v6.begin(), v6.end(), v7.begin(), v7.end());
+    std::cout << *it13.first  << std::endl; //  7
+    std::cout << *it13.second  << std::endl;    //25
 
 
 }
