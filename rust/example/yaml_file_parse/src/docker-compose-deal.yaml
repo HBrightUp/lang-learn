@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    privileged: true
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+    - ./nginx/etc/nginx:/etc/nginx
+    - ./var/www:/var/www/html
+    depends_on:
+    - redis
+  redis:
+    image: redis:latest
+    restart: always
+    privileged: true
+    ports:
+    - 6379:6379
+    volumes:
+    - ./data/redis/data:/data
+    - ./redis/etc:/usr/local/etc/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+networks:
+  mynet1:
+    driver: overlay
+    attachable: false
