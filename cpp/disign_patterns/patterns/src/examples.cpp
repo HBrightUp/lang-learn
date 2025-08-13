@@ -13,7 +13,15 @@
 #include"../include/bridge.h"
 #include"../include/composite.h"
 #include"../include/flyweight.h"
-
+#include"../include/template.h"
+#include"../include/command.h"
+#include"../include/iterator.h"
+#include"../include/observer.h"
+#include"../include/mediator.h"
+#include"../include/memento.h"
+#include"../include/state.h"
+#include"../include/visitor.h"
+#include"../include/responsibility.h"
 
 void call_factory() {
 
@@ -156,6 +164,163 @@ void call_flyweight() {
     auto f3 = fly.GetFont("1");
     f3->show(); //  key: 1
 }
+
+void call_template() {
+    AbstractClass* obj1 = new ConcreteClass1();
+    obj1->templateMethod();
+    delete obj1;
+
+    AbstractClass* obj2 = new ConcreteClass2();
+    obj2->templateMethod();
+    delete obj2;
+
+}
+
+void call_command() {
+
+    // command receiver
+    Light light;
+    // create a command
+    auto lightOn = std::make_unique<LightOnCommand>(light);
+    // 创建调用者 (遥控器)
+    RemoteControl remote;
+    // 将命令设置到遥控器
+    remote.setCommand(std::move(lightOn));
+    // 按下按钮 (执行命令)
+    remote.pressButton(); // 输出: Light is on
+}
+
+void call_iterator() {
+    List list;
+    list.add(1);
+    list.add(2);
+    list.add(3);
+
+    auto iterator = list.create_iterator();
+
+    while (!iterator->is_done()) {
+        std::cout << iterator->next() << " ";
+    }
+    std::cout << std::endl; // Output: 1 2 3
+
+}
+
+void call_observer() {
+    Subject *subject = new Subject;
+    Observer *observer1 = new Observer(*subject);
+    Observer *observer2 = new Observer(*subject);
+    Observer *observer3 = new Observer(*subject);
+    Observer *observer4;
+    Observer *observer5;
+
+    subject->CreateMessage("Hello World! :D");
+    observer3->RemoveMeFromTheList();
+
+    subject->CreateMessage("The weather is hot today! :p");
+    observer4 = new Observer(*subject);
+
+    observer2->RemoveMeFromTheList();
+    observer5 = new Observer(*subject);
+
+    subject->CreateMessage("My new car is great! ;)");
+    observer5->RemoveMeFromTheList();
+
+    observer4->RemoveMeFromTheList();
+    observer1->RemoveMeFromTheList();
+
+    delete observer5;
+    delete observer4;
+    delete observer3;
+    delete observer2;
+    delete observer1;
+    delete subject;
+}
+
+void call_mediator(){
+    Component1 *c1 = new Component1;
+    Component2 *c2 = new Component2;
+    ConcreteMediator *mediator = new ConcreteMediator(c1, c2);
+    std::cout << "Client triggers operation A.\n";
+    c1->DoA();
+    std::cout << "\n";
+    std::cout << "Client triggers operation D.\n";
+    c2->DoD();
+
+    delete c1;
+    delete c2;
+    delete mediator;
+}
+
+void call_memento() {
+    Originator originator;
+    Caretaker caretaker;
+
+    originator.setState("State #1");
+    caretaker.addMemento(originator.createMemento());
+
+    originator.setState("State #2");
+    caretaker.addMemento(originator.createMemento());
+
+    originator.setState("State #3");
+    caretaker.addMemento(originator.createMemento());
+
+    std::cout << "Current State: " << originator.getState() << std::endl;
+
+    originator.restoreMemento(caretaker.getMemento(1));
+    std::cout << "Restored to State: " << originator.getState() << std::endl;
+
+    originator.restoreMemento(caretaker.getMemento(0));
+    std::cout << "Restored to State: " << originator.getState() << std::endl;
+}
+
+void call_state() {
+    ContextA *context = new ContextA(new ConcreteStateA);
+    context->Request1();
+    context->Request2();
+    delete context;
+}
+
+void call_visitor() {
+    using namespace sv;
+
+    
+    std::array<const sv::Component *, 2> components = {new sv::ConcreteComponentA, new sv::ConcreteComponentB};
+    std::cout << "The client code works with all visitors via the base Visitor interface:\n";
+    ConcreteVisitor1 *visitor1 = new ConcreteVisitor1;
+    sv::ClientCode(components, visitor1);
+    std::cout << "\n";
+    std::cout << "It allows the same client code to work with different types of visitors:\n";
+    ConcreteVisitor2 *visitor2 = new ConcreteVisitor2;
+    ClientCode(components, visitor2);
+
+    for (const sv::Component *comp : components) {
+    delete comp;
+    }
+    delete visitor1;
+    delete visitor2;
+}
+
+void call_responsibility() {
+    MonkeyHandler *monkey = new MonkeyHandler;
+    SquirrelHandler *squirrel = new SquirrelHandler;
+    DogHandler *dog = new DogHandler;
+    monkey->SetNext(squirrel)->SetNext(dog);
+
+    /**
+     * The client should be able to send a request to any handler, not just the
+     * first one in the chain.
+     */
+    std::cout << "Chain: Monkey > Squirrel > Dog\n\n";
+    ClientCode(*monkey);
+    std::cout << "\n";
+    std::cout << "Subchain: Squirrel > Dog\n\n";
+    ClientCode(*squirrel);
+
+    delete monkey;
+    delete squirrel;
+    delete dog;
+}
+
 void call_examples() {
     //call_factory();
     //call_stratagy();
@@ -168,7 +333,16 @@ void call_examples() {
     //call_facade();
     //call_bridge();
     //call_composite();
-    call_flyweight();
+    //call_flyweight();
+    //call_template();
+    //call_command();
+    //call_iterator();
+    //call_observer();
+    //call_mediator();
+    //call_memento();
+    //all_state();
+    //call_visitor();
+    call_responsibility();
 }
 
 

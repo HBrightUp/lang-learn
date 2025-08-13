@@ -2,13 +2,13 @@
 
 #include<iostream>
 
-class ISubject
+class IProxy
 {
 public:
     virtual void Run() = 0;
 };
 
-class RealSubject :public ISubject
+class RealSubject :public IProxy
 {
 public:
     virtual void Run()
@@ -17,7 +17,7 @@ public:
     }
 };
 
-class RealProxy :public ISubject
+class RealProxy :public IProxy
 {
 public:
     RealProxy(std::string userName, std::string password) :
