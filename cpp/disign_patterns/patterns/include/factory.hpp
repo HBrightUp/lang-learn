@@ -5,17 +5,17 @@
 template <class ProductType_t>
 class IProductRegistrar
 {
-public:
-   virtual ProductType_t *CreateProduct() = 0;
+   public:
+      virtual ProductType_t *CreateProduct() = 0;
 
-protected:
-   IProductRegistrar() {}
-   virtual ~IProductRegistrar() {}
+   protected:
+      IProductRegistrar() {}
+      virtual ~IProductRegistrar() {}
 
-private:
+   private:
 
-   IProductRegistrar(const IProductRegistrar &);
-   const IProductRegistrar &operator=(const IProductRegistrar &);
+      IProductRegistrar(const IProductRegistrar &);
+      const IProductRegistrar &operator=(const IProductRegistrar &);
 };
 
 template <class ProductType_t>
@@ -40,8 +40,6 @@ public:
          return m_ProductRegistry[name]->CreateProduct();
       }
 
-      std::cout << "No product found for " << name << std::endl;
-
       return nullptr;
    }
 
@@ -61,53 +59,52 @@ private:
 template <class ProductType_t, class ProductImpl_t>
 class ProductRegistrar : public IProductRegistrar<ProductType_t>
 {
-public:
+   public:
+      explicit ProductRegistrar(std::string name)
+      {
+         ProductFactory<ProductType_t>::Instance().RegisterProduct(this, name);
+      }
 
-   explicit ProductRegistrar(std::string name)
-   {
-      ProductFactory<ProductType_t>::Instance().RegisterProduct(this, name);
-   }
-
-   ProductType_t *CreateProduct()
-   {
-      return new ProductImpl_t();
-   }
+      ProductType_t *CreateProduct()
+      {
+         return new ProductImpl_t();
+      }
 };
 
 // Base class of product-1
 class Shoes
 {
-public:
-    virtual void Show() = 0;
-    virtual ~Shoes() {}
+   public:
+      virtual void Show() = 0;
+      virtual ~Shoes() {}
 };
 
 // Specific products
 class NiKeShoes : public Shoes
 {
-public:
-    void Show()
-    {
-        std::cout << "NiKeShoes show" << std::endl;
-    }
-    virtual ~NiKeShoes() { std::cout << "NiKeShoes destructor call" << std::endl;}
+   public:
+      void Show()
+      {
+         std::cout << "NiKeShoes show" << std::endl;
+      }
+      virtual ~NiKeShoes() { std::cout << "NiKeShoes destructor call" << std::endl;}
 };
 
 // Base class of product-2
 class Clothe
 {
-public:
-    virtual void Show() = 0;
-    virtual ~Clothe() {}
-};
+   public:
+      virtual void Show() = 0;
+      virtual ~Clothe() {}
+   };
 
 // Specific products
 class UniqloClothe : public Clothe
 {
-public:
-    void Show()
-    {
-        std::cout << "UniqloClothe show" << std::endl;
-    }
-    virtual ~UniqloClothe() { std::cout << "UniqloClothe destructor call" << std::endl;}
+   public:
+      void Show()
+      {
+         std::cout << "UniqloClothe show" << std::endl;
+      }
+      virtual ~UniqloClothe() { std::cout << "UniqloClothe destructor call" << std::endl;}
 };

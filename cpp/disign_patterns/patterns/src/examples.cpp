@@ -50,13 +50,12 @@ void call_single() {
 }
 void call_adapter() {
 
-    // using methon-1
-    std::shared_ptr<Target>  t1 = std::make_shared<ClassAdapter>();
-    t1->request(); //  Adaptee::specificRequest()
+    std::shared_ptr<CTarget>  t1 = std::make_shared<CAdapter>();
+    t1->request();  
 
     std::unique_ptr<Adaptee> ada(new Adaptee());
-    std::unique_ptr<Target> t2(new ObjectAdapter(ada.get()));
-    t2->request(); // Adaptee::specificRequest()
+    std::unique_ptr<CTarget> t2(new ObjectAdapter(ada.get()));
+    t2->request(); 
 }
 
 void call_builder() {
@@ -90,15 +89,11 @@ void call_prototype(){
 
 void call_decorator() {
     std::unique_ptr<Component>  component(new ConcreteComponent());
-    //Component* decoratedComponentA = new ConcreteDecoratorA(component);
-    //Component* decoratedComponentB = new ConcreteDecoratorB(decoratedComponentA);
     std::unique_ptr<Component>  decoratedComponentA(new ConcreteDecoratorA(component.get()));
     std::unique_ptr<Component>  decoratedComponentB(new ConcreteDecoratorB(decoratedComponentA.get()));
 
-    decoratedComponentB->operation(); // 调用时会按照装饰器的顺序依次执行功能
-    // ...
-    
-  
+    decoratedComponentB->operation(); 
+
 }
 
 void call_proxy() {
@@ -112,47 +107,33 @@ void call_facade() {
 }
 
 void call_bridge() {
-    Implementor* implA = new ConcreteImplementorA();
-    Abstraction* absA = new RefinedAbstraction(implA);
-    absA->operation(); // 输出: ConcreteImplementorA operation
-
-    Implementor* implB = new ConcreteImplementorB();
-    Abstraction* absB = new RefinedAbstraction(implB);
-    absB->operation(); // 输出: ConcreteImplementorB operation
-
-    delete implA;
-    delete absA;
-    delete implB;
-    delete absB;
+    std::unique_ptr<Implementor>  implA(new ConcreteImplementorA());
+    std::unique_ptr<Abstraction>  absA(new RefinedAbstraction(implA.get()));
+    absA->operation(); 
+ 
+    std::unique_ptr<Implementor>  implB(new ConcreteImplementorA());
+    std::unique_ptr<Abstraction>  absB(new RefinedAbstraction(implB.get()));
+    absB->operation(); 
 }
 
 void call_composite() {
-    // 创建叶子节点
-    Leaf* leaf1 = new Leaf("Leaf1");
-    Leaf* leaf2 = new Leaf("Leaf2");
 
-    // 创建容器节点
-    Composite* composite = new Composite();
-    composite->add(leaf1);
-    composite->add(leaf2);
+    std::unique_ptr<Leaf>  leaf1(new Leaf("Leaf1"));
+    std::unique_ptr<Leaf>  leaf2(new Leaf("Leaf2"));
 
-    // 创建另一个容器节点
-    Composite* composite2 = new Composite();
+    std::unique_ptr<Composite>  composite(new Composite());
+    composite->add(leaf1.get());
+    composite->add(leaf2.get());
+
+    std::unique_ptr<Composite>  composite2(new Composite());
     composite2->add(new Leaf("Leaf3"));
-    composite->add(composite2);
+    composite->add(composite2.get());
 
-    // 客户端使用
     composite->operation();
-
-    // 释放内存 (实际开发中需要更完善的内存管理)
-    delete leaf1;
-    delete leaf2;
-    delete composite;
-    delete composite2;
 
 }
 void call_flyweight() {
-    //std::map<std::string, Font *> fontPool;
+
     FlyWeightFactory fly;
 
     auto f1 = fly.GetFont("1");
@@ -166,28 +147,25 @@ void call_flyweight() {
 }
 
 void call_template() {
-    AbstractClass* obj1 = new ConcreteClass1();
+    std::unique_ptr<AbstractClass>  obj1(new ConcreteClass1());
     obj1->templateMethod();
-    delete obj1;
 
-    AbstractClass* obj2 = new ConcreteClass2();
+    std::unique_ptr<AbstractClass>  obj2(new ConcreteClass2());
     obj2->templateMethod();
-    delete obj2;
-
 }
 
 void call_command() {
 
-    // command receiver
+    //create
     Light light;
-    // create a command
     auto lightOn = std::make_unique<LightOnCommand>(light);
-    // 创建调用者 (遥控器)
+
+    // remote
     RemoteControl remote;
-    // 将命令设置到遥控器
     remote.setCommand(std::move(lightOn));
-    // 按下按钮 (执行命令)
-    remote.pressButton(); // 输出: Light is on
+
+    // execute
+    remote.pressButton(); 
 }
 
 void call_iterator() {
@@ -206,49 +184,37 @@ void call_iterator() {
 }
 
 void call_observer() {
-    Subject *subject = new Subject;
-    Observer *observer1 = new Observer(*subject);
-    Observer *observer2 = new Observer(*subject);
-    Observer *observer3 = new Observer(*subject);
-    Observer *observer4;
-    Observer *observer5;
+ 
+    std::unique_ptr<Subject> subject(new Subject());
+
+    std::unique_ptr<Observer> observer1(new Observer(*subject.get()));
+    std::unique_ptr<Observer> observer2(new Observer(*subject.get()));
+    std::unique_ptr<Observer> observer3(new Observer(*subject.get()));
 
     subject->CreateMessage("Hello World! :D");
     observer3->RemoveMeFromTheList();
 
     subject->CreateMessage("The weather is hot today! :p");
-    observer4 = new Observer(*subject);
+    std::unique_ptr<Observer> observer4(new Observer(*subject.get()));
 
     observer2->RemoveMeFromTheList();
-    observer5 = new Observer(*subject);
+    std::unique_ptr<Observer> observer5(new Observer(*subject.get()));
 
     subject->CreateMessage("My new car is great! ;)");
     observer5->RemoveMeFromTheList();
 
     observer4->RemoveMeFromTheList();
     observer1->RemoveMeFromTheList();
-
-    delete observer5;
-    delete observer4;
-    delete observer3;
-    delete observer2;
-    delete observer1;
-    delete subject;
 }
 
 void call_mediator(){
-    Component1 *c1 = new Component1;
-    Component2 *c2 = new Component2;
-    ConcreteMediator *mediator = new ConcreteMediator(c1, c2);
-    std::cout << "Client triggers operation A.\n";
+   
+    std::unique_ptr<Component1> c1(new Component1());
+    std::unique_ptr<Component2> c2(new Component2());
+    std::unique_ptr<ConcreteMediator> mediator(new ConcreteMediator(c1.get(), c2.get()));
+    
     c1->DoA();
-    std::cout << "\n";
-    std::cout << "Client triggers operation D.\n";
     c2->DoD();
-
-    delete c1;
-    delete c2;
-    delete mediator;
 }
 
 void call_memento() {
@@ -274,74 +240,63 @@ void call_memento() {
 }
 
 void call_state() {
-    ContextA *context = new ContextA(new ConcreteStateA);
+    std::unique_ptr<ContextA> context(new ContextA(new ConcreteStateA));
+
     context->Request1();
     context->Request2();
-    delete context;
 }
 
 void call_visitor() {
     using namespace sv;
 
-    
     std::array<const sv::Component *, 2> components = {new sv::ConcreteComponentA, new sv::ConcreteComponentB};
-    std::cout << "The client code works with all visitors via the base Visitor interface:\n";
-    ConcreteVisitor1 *visitor1 = new ConcreteVisitor1;
-    sv::ClientCode(components, visitor1);
-    std::cout << "\n";
-    std::cout << "It allows the same client code to work with different types of visitors:\n";
-    ConcreteVisitor2 *visitor2 = new ConcreteVisitor2;
-    ClientCode(components, visitor2);
+
+    std::unique_ptr<ConcreteVisitor1> visitor1(new ConcreteVisitor1());
+    sv::ClientCode(components, visitor1.get());
+
+    std::unique_ptr<ConcreteVisitor2> visitor2(new ConcreteVisitor2());
+    ClientCode(components, visitor2.get());
 
     for (const sv::Component *comp : components) {
-    delete comp;
+        delete comp;
     }
-    delete visitor1;
-    delete visitor2;
 }
 
 void call_responsibility() {
-    MonkeyHandler *monkey = new MonkeyHandler;
-    SquirrelHandler *squirrel = new SquirrelHandler;
-    DogHandler *dog = new DogHandler;
-    monkey->SetNext(squirrel)->SetNext(dog);
+    //MonkeyHandler *monkey = new MonkeyHandler;
+    std::unique_ptr<MonkeyHandler> monkey(new MonkeyHandler());
+    std::unique_ptr<SquirrelHandler> squirrel(new SquirrelHandler());
+    std::unique_ptr<DogHandler> dog(new DogHandler());
+    //SquirrelHandler *squirrel = new SquirrelHandler;
+    //DogHandler *dog = new DogHandler;
 
-    /**
-     * The client should be able to send a request to any handler, not just the
-     * first one in the chain.
-     */
-    std::cout << "Chain: Monkey > Squirrel > Dog\n\n";
+    monkey->SetNext(squirrel.get())->SetNext(dog.get());
+
     ClientCode(*monkey);
-    std::cout << "\n";
-    std::cout << "Subchain: Squirrel > Dog\n\n";
     ClientCode(*squirrel);
-
-    delete monkey;
-    delete squirrel;
-    delete dog;
 }
 
 void call_examples() {
-    //call_factory();
-    //call_stratagy();
-    //call_single();
-    //call_adapter();
-    //call_builder();
-    //call_prototype();
-    //call_decorator();
-    //call_proxy();
-    //call_facade();
-    //call_bridge();
-    //call_composite();
-    //call_flyweight();
-    //call_template();
-    //call_command();
-    //call_iterator();
-    //call_observer();
-    //call_mediator();
-    //call_memento();
-    //all_state();
-    //call_visitor();
+    // call_factory();
+    // call_stratagy();
+    // call_single();
+    // call_adapter();
+    // call_builder();
+    // call_prototype();
+    // call_decorator();
+    // call_proxy();
+    // call_facade();
+    // call_bridge();
+    // call_composite();
+    // call_flyweight();
+    // call_template();
+    // call_command();
+    // call_iterator();
+    // call_observer();
+    // call_mediator();
+    // call_memento();
+    // call_state();
+    // call_visitor();
     call_responsibility();
 }
 
