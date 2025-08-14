@@ -1,0 +1,10 @@
+syntax = "proto3"; // 指定 proto 版本
+
+package com.example; // 定义包名，用于 C++ 的命名空间
+
+message Tree {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
+
