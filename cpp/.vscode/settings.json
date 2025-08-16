@@ -57,6 +57,14 @@
         "stop_token": "cpp",
         "streambuf": "cpp",
         "thread": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "*.inc": "cpp",
+        "bitset": "cpp",
+        "csignal": "cpp",
+        "unordered_set": "cpp",
+        "regex": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "cinttypes": "cpp"
     }
 }

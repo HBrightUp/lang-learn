@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add.png</file>
+        <file>assets.qrc</file>
+        <file>back-64.png</file>
+        <file>front-64.png</file>
+        <file>mode-50.png</file>
+        <file>pasue-48.png</file>
+        <file>pause-96.png</file>
+        <file>play-48.png</file>
+        <file>play-96.png</file>
+        <file>voice-50.png</file>
+        <file>voice-150.png</file>
+    </qresource>
+</RCC>
