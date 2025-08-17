@@ -75,8 +75,22 @@ Widget::Widget(QWidget *parent)
     audio_->setVolume(0.5);
 
     // set default director of music.
-    update_player_list(QDir::homePath() + "/music");
+    update_player_list(QDir::homePath() + "/Music");
 
+    //Qt::red
+
+
+    QString strStyle = "QListWidget{font-size:18px;   "
+                        "color: darkBlue; background:#00000000;"
+                        "padding-left:0px;"
+                        "border: none solid none}"
+                        "QListWidget::item{height:30px; }"
+                        /*列表项扫过时文本、背景变化*/
+                        "QListWidget::item:hover{color: darkGreen; background: #FFC0CB;}"
+                        /**列表项选中*/
+                        "QListWidget::item::selected{ color: white; background: #b4446c;}";
+
+    ui->list_music->setStyleSheet(strStyle);
 }
 
 bool Widget::is_playable() {
@@ -101,14 +115,16 @@ void Widget::update_player_list(const QString& path){
     }
 
     QDir dir(path);
-    auto music_list = dir.entryList(QStringList() << "*.mp3" <<"*.wav");
-
-    ui->list_music->addItems(music_list);
-    ui->list_music->setCurrentRow(0);
-
+    QStringList music_list = dir.entryList(QStringList() << "*.mp3" <<"*.wav");
     for(auto& file : music_list) {
         playlist_.append(QUrl::fromLocalFile(path + "/"+ file));
     }
+
+    for(auto& list : music_list) {
+        ui->list_music->addItem(list.left(list.size() - 4));
+    }
+
+    ui->list_music->setCurrentRow(0);
 }
 
 void Widget::on_btn_play_clicked()

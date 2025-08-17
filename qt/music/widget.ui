@@ -63,11 +63,11 @@
    </property>
    <property name="styleSheet">
     <string notr="true">*{
-border:none;
+	border:none;
 }
 
 QPushButton:hover{
-	background-color:rgb(207, 31, 213)
+	background-color: #FFC0CB;
 }
 </string>
    </property>
@@ -196,13 +196,13 @@ image: url(:/mode-50.png)</string>
     <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">*{
-	background-color: rgba(0,0,0,0);
-	color:  darkBlue;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::Shape::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Plain</enum>
    </property>
    <property name="currentRow">
     <number>-1</number>
