@@ -8,8 +8,10 @@
         <file>pasue-48.png</file>
         <file>pause-96.png</file>
         <file>play-48.png</file>
-        <file>play-96.png</file>
         <file>voice-50.png</file>
         <file>voice-150.png</file>
+        <file>bk1.png</file>
+        <file>bk4.jpg</file>
+        <file>play-96.png</file>
     </qresource>
 </RCC>

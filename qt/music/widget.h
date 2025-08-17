@@ -31,12 +31,18 @@ private slots:
 
     void on_list_music_doubleClicked(const QModelIndex &index);
 
+    void on_btn_volume_clicked();
+
+    void update_player_list(const QString& path);
+    void play_next();
+    bool is_playable();
+
 private:
     Ui::Widget *ui;
-    QAudioOutput* audioOutput;
-    QMediaPlayer* mediaPlayer;
-    QList<QUrl> play_list;
+    QAudioOutput* audio_;
+    QMediaPlayer* player_;
+    QList<QUrl> playlist_;
 
-    int current_play_index;
+    int current_play_index_;
 };
 #endif // WIDGET_H
