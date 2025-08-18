@@ -5,6 +5,7 @@
 #include<QMediaPlayer>
 #include<QAudioOutput>
 #include<QUrl>
+#include<QSharedPointer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,17 +32,18 @@ private slots:
     void update_player_list(const QString& path);
     void play_next();
     bool is_playable();
+    void set_mute(bool mute);
 
 private:
     Ui::Widget *ui;
-    QAudioOutput* audio_;
-    QMediaPlayer* player_;
+    QSharedPointer<QAudioOutput> audio_;
+    QSharedPointer<QMediaPlayer> player_;
     QList<QUrl> playlist_;
 
     int current_play_index_;
-    int current_play_position_;
+    //int current_play_position_;
     quint8 current_theme_;
-    int slider_triggere_position_;
+    //int slider_triggere_position_;
     bool is_silder_pressed_;
 };
 #endif // WIDGET_H

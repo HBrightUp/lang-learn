@@ -18,6 +18,7 @@ Widget::Widget(QWidget *parent)
     // set background for application.
     ui->lab_bk->setPixmap(QPixmap(":/bk1.png"));
 
+
     //  load font for QListWidget
     int fontId = QFontDatabase::addApplicationFont(":/jianglan.ttf");
     qInfo()<< fontId;
@@ -34,41 +35,43 @@ Widget::Widget(QWidget *parent)
     }
 
     // load media and audio
-    audio_ = new QAudioOutput(this);
-    player_ = new QMediaPlayer(this);
-    player_->setAudioOutput(audio_);
+    //audio_(new QAudioOutput(this));
+    audio_.reset(new QAudioOutput(this));
+
+    player_.reset(new QMediaPlayer(this));
+    //player_ = new QMediaPlayer(this);
+    player_.get()->setAudioOutput(audio_.get());
+    set_mute(false);
 
     // listen the progress of player and set total length of slider .
-    connect(player_, &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
+    connect(player_.get(), &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
         ui->lab_total->setText(QString("%1:%2").arg(duration / 1000 / 60, 2, 10, QChar('0')).arg(duration / 1000 % 60));
         ui->music_slider->setRange(0, duration);
     });
 
-    // Set progress bar of slider in real time
-    connect(player_, &QMediaPlayer::positionChanged, this, [=](qint64 pos){
-
-        ui->lab_pos->setText(QString("%1:%2").arg(pos / 1000 / 60, 2, 10, QChar('0')).arg(pos / 1000 % 60));
-
+    // Set progressplayer_list_ bar of slider in real time
+    connect(player_.get(), &QMediaPlayer::positionChanged, this, [=](qint64 pos){
+        ui->lab_pos->setText(QString("%1:%2").arg(pos / 1000 / 60, 2, 10, QChar('0')).arg(pos / 1000 % 60, 2, 10, QChar('0')));
         if (!is_silder_pressed_) {
             ui->music_slider->setValue(pos);
         }
-
     });
 
     //  Monitor the playing status of the music, and if one song is finished, play the next one.
-    connect(player_, &QMediaPlayer::mediaStatusChanged, [=](QMediaPlayer::MediaStatus status){
+    connect(player_.get(), &QMediaPlayer::mediaStatusChanged, [=](QMediaPlayer::MediaStatus status){
        if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
             play_next();
        }
     });
 
-    connect(player_, &QMediaPlayer::playbackStateChanged,[=](QMediaPlayer::PlaybackState newState){
+    connect(player_.get(), &QMediaPlayer::playbackStateChanged,[=](QMediaPlayer::PlaybackState newState){
         qInfo() << newState;
         if (newState == QMediaPlayer::PlaybackState::StoppedState || newState == QMediaPlayer::PlaybackState::PausedState) {
-            //ui->btn_play->setIcon(QIcon(":/assets/pause-48.png"));
+            ui->btn_play->setIcon(QIcon(":/pause-96.png"));
+            ui->btn_play->setIconSize(ui->btn_play->size());
         } else if(newState == QMediaPlayer::PlaybackState::PlayingState) {
-            //ui->btn_play->setIcon(QIcon(":/assets/play-48.png"));
-
+            ui->btn_play->setIcon(QIcon(":/play-96.png"));
+            ui->btn_play->setIconSize(ui->btn_play->size());
         } else {
 
         }
@@ -114,6 +117,7 @@ bool Widget::is_playable() {
 Widget::~Widget()
 {
     player_->stop();
+    playlist_.clear();
     delete ui;
 }
 
@@ -219,16 +223,29 @@ void Widget::on_list_music_doubleClicked(const QModelIndex &index)
 
 void Widget::on_btn_volume_clicked()
 {
-    bool is_muted = audio_->isMuted();
-
-    if (is_muted) {
-        audio_->setMuted(false);
-    } else {
-        audio_->setMuted(true);
-    }
+    set_mute(!audio_->isMuted());
+    // if (is_muted) {
+    //     audio_->setMuted(false);
+    //     ui->btn_volume->setIcon(QIcon(":/volume.png"));
+    //     ui->btn_volume->setIconSize(ui->btn_volume->size());
+    // } else {
+    //     audio_->setMuted(true);
+    //     ui->btn_volume->setIcon(QIcon(":/volume-mute.png"));
+    //     ui->btn_volume->setIconSize(ui->btn_volume->size());
+    // }
 }
 
-
+void Widget::set_mute(bool mute) {
+    if (mute) {
+        audio_->setMuted(true);
+        ui->btn_volume->setIcon(QIcon(":/volume-mute.png"));
+        ui->btn_volume->setIconSize(ui->btn_volume->size());
+    } else {
+        audio_->setMuted(false);
+        ui->btn_volume->setIcon(QIcon(":/volume.png"));
+        ui->btn_volume->setIconSize(ui->btn_volume->size());
+    }
+}
 
 void Widget::on_btn_theme_clicked()
 {

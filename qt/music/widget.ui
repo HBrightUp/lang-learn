@@ -66,9 +66,6 @@
 	border:none;
 }
 
-QPushButton:hover{
-	background-color: #FFC0CB;
-}
 </string>
    </property>
    <widget class="QPushButton" name="btn_prev">
@@ -268,9 +265,17 @@ image: url(:/mode-50.png)</string>
    </property>
    <property name="font">
     <font>
-     <family>Noto Sans Chakma</family>
+     <family>Noto Sans Kayah Li</family>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::FocusPolicy::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{
+	color: #00FFFF;
+}</string>
    </property>
    <property name="text">
     <string>00:00</string>
@@ -314,6 +319,11 @@ image: url(:/mode-50.png)</string>
      <family>Noto Sans Chakma</family>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">*{
+	color: #00FFFF;
+}</string>
    </property>
    <property name="text">
     <string>00:00</string>
