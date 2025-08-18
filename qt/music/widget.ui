@@ -183,7 +183,7 @@ image: url(:/mode-50.png)</string>
      <x>0</x>
      <y>0</y>
      <width>360</width>
-     <height>500</height>
+     <height>510</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -191,6 +191,24 @@ image: url(:/mode-50.png)</string>
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>360</width>
+     <height>510</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>360</width>
+     <height>510</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>360</width>
+     <height>510</height>
+    </size>
    </property>
    <property name="layoutDirection">
     <enum>Qt::LayoutDirection::LeftToRight</enum>
