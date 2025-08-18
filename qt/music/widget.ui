@@ -10,6 +10,12 @@
     <height>640</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>360</width>
@@ -22,8 +28,28 @@
     <height>640</height>
    </size>
   </property>
+  <property name="baseSize">
+   <size>
+    <width>360</width>
+    <height>640</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>Music Player</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::FormatTextBold" resource="icon/assets.qrc">
+    <normaloff>:/app-icon3.png</normaloff>
+    <normalon>:/app-icon3.png</normalon>
+    <disabledoff>:/app-icon3.png</disabledoff>
+    <disabledon>:/app-icon3.png</disabledon>
+    <activeoff>:/app-icon3.png</activeoff>
+    <activeon>:/app-icon3.png</activeon>
+    <selectedoff>:/app-icon3.png</selectedoff>
+    <selectedon>:/app-icon3.png</selectedon>:/app-icon3.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LayoutDirection::LeftToRight</enum>
@@ -180,7 +206,7 @@ image: url(:/mode-50.png)</string>
      <x>0</x>
      <y>0</y>
      <width>360</width>
-     <height>510</height>
+     <height>540</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -192,19 +218,19 @@ image: url(:/mode-50.png)</string>
    <property name="minimumSize">
     <size>
      <width>360</width>
-     <height>510</height>
+     <height>540</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>360</width>
-     <height>510</height>
+     <height>540</height>
     </size>
    </property>
    <property name="baseSize">
     <size>
      <width>360</width>
-     <height>510</height>
+     <height>540</height>
     </size>
    </property>
    <property name="layoutDirection">
@@ -373,6 +399,9 @@ image: url(:/mode-50.png)</string>
   <zorder>lab_pos</zorder>
   <zorder>lab_total</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="icon/assets.qrc"/>
+  <include location="icon/assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

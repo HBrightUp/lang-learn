@@ -21,7 +21,6 @@ Widget::Widget(QWidget *parent)
 
     //  load font for QListWidget
     int fontId = QFontDatabase::addApplicationFont(":/jianglan.ttf");
-    qInfo()<< fontId;
     if (fontId != -1) {
         QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
         if (!fontFamilies.isEmpty()){
@@ -45,7 +44,7 @@ Widget::Widget(QWidget *parent)
 
     // listen the progress of player and set total length of slider .
     connect(player_.get(), &QMediaPlayer::durationChanged, this, [=](qint64 duration) {
-        ui->lab_total->setText(QString("%1:%2").arg(duration / 1000 / 60, 2, 10, QChar('0')).arg(duration / 1000 % 60));
+        ui->lab_total->setText(QString("%1:%2").arg(duration / 1000 / 60, 2, 10, QChar('0')).arg(duration / 1000 % 60, 2, 10, QChar('0')));
         ui->music_slider->setRange(0, duration);
     });
 
@@ -65,7 +64,6 @@ Widget::Widget(QWidget *parent)
     });
 
     connect(player_.get(), &QMediaPlayer::playbackStateChanged,[=](QMediaPlayer::PlaybackState newState){
-        qInfo() << newState;
         if (newState == QMediaPlayer::PlaybackState::StoppedState || newState == QMediaPlayer::PlaybackState::PausedState) {
             ui->btn_play->setIcon(QIcon(":/pause-96.png"));
             ui->btn_play->setIconSize(ui->btn_play->size());
@@ -85,7 +83,6 @@ Widget::Widget(QWidget *parent)
     });
     connect(ui->music_slider, &QSlider::sliderReleased, this, [=]() {
         int pos = ui->music_slider->value();
-        qInfo()<< pos;
         is_silder_pressed_ = false;
         player_->setPosition(pos);
     });
@@ -123,7 +120,7 @@ Widget::~Widget()
 
 void Widget::on_btn_directory_clicked()
 {
-    auto path = QFileDialog::getExistingDirectory(this, "Select directory of music:", "/home/hml/Downloads");
+    auto path = QFileDialog::getExistingDirectory(this, "Select directory of music:", "/home/hml/Music");
     update_player_list(path);
 }
 void Widget::update_player_list(const QString& path){
@@ -156,7 +153,6 @@ void Widget::on_btn_play_clicked()
         case QMediaPlayer::PlaybackState::StoppedState:
         {
             current_play_index_ = ui->list_music->currentRow();
-            qInfo() << current_play_index_;
             player_->setSource(playlist_[current_play_index_]);
             player_->play();
             break;

@@ -41,9 +41,7 @@ private:
     QList<QUrl> playlist_;
 
     int current_play_index_;
-    //int current_play_position_;
     quint8 current_theme_;
-    //int slider_triggere_position_;
     bool is_silder_pressed_;
 };
 #endif // WIDGET_H
