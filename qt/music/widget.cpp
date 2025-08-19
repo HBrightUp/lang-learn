@@ -6,14 +6,21 @@
 #include<QIcon>
 #include<QSize>
 #include<QFontDatabase>
+#include<QRandomGenerator>
+#include<QImageReader>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle("11111");
+    //this->setWindowIcon(QIcon(":/app-icon3.png"));
+
     current_play_index_ = 0;
     current_theme_ = 0;
+    play_mode_ = PlayMode::ENU_LOOP;
 
     // set background for application.
     ui->lab_bk->setPixmap(QPixmap(":/bk1.png"));
@@ -59,7 +66,21 @@ Widget::Widget(QWidget *parent)
     //  Monitor the playing status of the music, and if one song is finished, play the next one.
     connect(player_.get(), &QMediaPlayer::mediaStatusChanged, [=](QMediaPlayer::MediaStatus status){
        if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
-            play_next();
+           switch(play_mode_) {
+               case PlayMode::ENU_SINGLE: {
+                   player_->play();
+                   break;
+               }
+               case PlayMode::ENU_LOOP: {
+                   play_next();
+                   break;
+               }
+               case PlayMode::ENU_RAND: {
+                   play_rand();
+                   break;
+               }
+           }
+            //play_next();
        }
     });
 
@@ -184,6 +205,14 @@ void Widget::play_next() {
     player_->play();
 }
 
+void Widget::play_rand() {
+    current_play_index_ = QRandomGenerator::global()->bounded(playlist_.size());
+    qInfo() << current_play_index_;
+    ui->list_music->setCurrentRow(current_play_index_);
+    player_->setSource(playlist_[current_play_index_]);
+    player_->play();
+}
+
 
 void Widget::on_btn_prev_clicked()
 {
@@ -220,15 +249,6 @@ void Widget::on_list_music_doubleClicked(const QModelIndex &index)
 void Widget::on_btn_volume_clicked()
 {
     set_mute(!audio_->isMuted());
-    // if (is_muted) {
-    //     audio_->setMuted(false);
-    //     ui->btn_volume->setIcon(QIcon(":/volume.png"));
-    //     ui->btn_volume->setIconSize(ui->btn_volume->size());
-    // } else {
-    //     audio_->setMuted(true);
-    //     ui->btn_volume->setIcon(QIcon(":/volume-mute.png"));
-    //     ui->btn_volume->setIconSize(ui->btn_volume->size());
-    // }
 }
 
 void Widget::set_mute(bool mute) {
@@ -261,16 +281,32 @@ void Widget::on_btn_theme_clicked()
             break;
         }
         case 2: {
-            QPixmap pixmap(":/bk4.jpg");
-            QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
+            // QPixmap pixmap(":/bk4.jpeg");
+            // QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+            // ui->lab_bk->setPixmap(scaledPixmap);
+            // QString filePath = ":/bk4.jpeg"; // 替换为你的图片路径
+            // QImage image;
+            // if (loadJpegImage(filePath, image)) {
+            //     ui->lab_bk->setPixmap(QPixmap::fromImage(image));
+            //     ui->lab_bk->show();
+            // }
+
+
             current_theme_ = 3;
             break;
         }
         case 3: {
-            QPixmap pixmap(":/bk5.jpg");
-            QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
+            // QPixmap pixmap(":/bk5.jpeg");
+            // QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+            // ui->lab_bk->setPixmap(scaledPixmap);
+
+            // QString filePath = "/home/hml/project/lang-learn/qt/music/icon/bk5.jpeg"; // 替换为你的图片路径
+            // QImage image;
+            // if (loadJpegImage(filePath, image)) {
+            //     ui->lab_bk->setPixmap(QPixmap::fromImage(image));
+            //     ui->lab_bk->show();
+            // }
+
             current_theme_ = 4;
             break;
         }
@@ -284,5 +320,37 @@ void Widget::on_btn_theme_clicked()
     }
 
     ui->lab_bk->resize(360, 640);
+}
+
+bool Widget::loadJpegImage(const QString& filePath, QImage& image) {
+    QImageReader reader(filePath);
+    if (!reader.canRead()) {
+        qDebug() << "Cannot read file:" << reader.errorString();
+        return false;
+    }
+
+    reader.setDecideFormatFromContent(true); // 自动检测图片格式
+    //reader.setQuality(75); // 设置JPEG解码质量 (可选)
+
+    if (!reader.read(&image)) {
+        qDebug() << "Failed to read image:" << reader.errorString();
+        return false;
+    }
+    return true;
+}
+
+void Widget::on_btn_playmode_clicked()
+{
+    qInfo() << play_mode_;
+    if (play_mode_ == PlayMode::ENU_RAND) {
+        play_mode_ = PlayMode::ENU_SINGLE;
+        ui->btn_playmode->setIcon(QIcon(":/play_single"));
+    } else if (play_mode_ == PlayMode::ENU_SINGLE) {
+        play_mode_ = PlayMode::ENU_LOOP;
+        ui->btn_playmode->setIcon(QIcon(":/play_loop"));
+    } else {
+        play_mode_ = PlayMode::ENU_RAND;
+        ui->btn_playmode->setIcon(QIcon(":/play_rand"));
+    }
 }
 

@@ -13,6 +13,14 @@ class Widget;
 }
 QT_END_NAMESPACE
 
+enum PlayMode {
+    ENU_SINGLE,
+    ENU_LOOP,
+    ENU_RAND,
+};
+
+
+
 class Widget : public QWidget
 {
     Q_OBJECT
@@ -31,8 +39,12 @@ private slots:
     void on_btn_theme_clicked();
     void update_player_list(const QString& path);
     void play_next();
+    void play_rand();
     bool is_playable();
     void set_mute(bool mute);
+
+    void on_btn_playmode_clicked();
+    bool loadJpegImage(const QString& filePath, QImage& image);
 
 private:
     Ui::Widget *ui;
@@ -43,5 +55,7 @@ private:
     int current_play_index_;
     quint8 current_theme_;
     bool is_silder_pressed_;
+    PlayMode play_mode_;
+
 };
 #endif // WIDGET_H

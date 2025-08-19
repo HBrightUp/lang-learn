@@ -41,7 +41,7 @@
    <string>Music Player</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="QIcon::ThemeIcon::FormatTextBold" resource="icon/assets.qrc">
+   <iconset theme="QIcon::ThemeIcon::FormatTextBold">
     <normaloff>:/app-icon3.png</normaloff>
     <normalon>:/app-icon3.png</normalon>
     <disabledoff>:/app-icon3.png</disabledoff>
@@ -94,110 +94,101 @@
 
 </string>
    </property>
-   <widget class="QPushButton" name="btn_prev">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>0</x>
       <y>40</y>
-      <width>31</width>
-      <height>31</height>
+      <width>351</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">
-image: url(:/front-64.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_directory">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="whatsThis">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/add.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_next">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>40</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image:url(:/back-64.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_play">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>40</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image:url(:/pause-96.png)
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_directory">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/add.png)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_theme">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	image: url(:/app-icon.png);
+}
 </string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_theme">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>40</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">
-image: url(:/mode-50.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_volume">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image:url(:/voice-150.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_playmode">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	image: url(:/play_loop.png);
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_prev">
+       <property name="styleSheet">
+        <string notr="true">
+image: url(:/front-64.png)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_play">
+       <property name="styleSheet">
+        <string notr="true">image:url(:/pause-96.png)
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_next">
+       <property name="styleSheet">
+        <string notr="true">image:url(:/back-64.png)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_volume">
+       <property name="styleSheet">
+        <string notr="true">image:url(:/volume.png)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QListWidget" name="list_music">
@@ -399,9 +390,6 @@ image: url(:/mode-50.png)</string>
   <zorder>lab_pos</zorder>
   <zorder>lab_total</zorder>
  </widget>
- <resources>
-  <include location="icon/assets.qrc"/>
-  <include location="icon/assets.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
