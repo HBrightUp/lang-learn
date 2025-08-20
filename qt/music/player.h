@@ -1,5 +1,5 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <QWidget>
 #include<QMediaPlayer>
@@ -11,7 +11,7 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class Widget;
+class Player;
 }
 QT_END_NAMESPACE
 
@@ -23,13 +23,13 @@ enum PlayMode {
 
 
 
-class Widget : public QWidget
+class Player : public QWidget
 {
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = nullptr);
-    ~Widget();
+    Player(QWidget *parent = nullptr);
+    ~Player();
 
 private slots:
     void on_btn_directory_clicked();
@@ -59,7 +59,7 @@ private slots:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-    Ui::Widget *ui;
+    Ui::Player *ui;
     QSharedPointer<QAudioOutput> audio_;
     QSharedPointer<QMediaPlayer> player_;
     QSharedPointer<QTimer> timer;
@@ -72,4 +72,4 @@ private:
     PlayMode play_mode_;
 
 };
-#endif // WIDGET_H
+#endif // PLAYER_H

@@ -1,5 +1,5 @@
-#include "widget.h"
-#include "./ui_widget.h"
+#include "player.h"
+#include "./ui_player.h"
 #include<QDebug>
 #include<QFileDialog>
 #include<QDir>
@@ -9,9 +9,9 @@
 #include<QRandomGenerator>
 #include<QImageReader>
 
-Widget::Widget(QWidget *parent)
+Player::Player(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::Widget)
+    , ui(new Ui::Player)
 {
     ui->setupUi(this);
 
@@ -37,7 +37,7 @@ Widget::Widget(QWidget *parent)
     init_ui();
 
     // listen the progress of player and set total length of slider .
-    connect(player_.get(), &QMediaPlayer::durationChanged, this, &Widget::media_durationChanged);
+    connect(player_.get(), &QMediaPlayer::durationChanged, this, &Player::media_durationChanged);
 
     // Set progressplayer_list_ bar of slider in real time
     connect(player_.get(), &QMediaPlayer::positionChanged, this, [=](qint64 pos){
@@ -93,7 +93,7 @@ Widget::Widget(QWidget *parent)
         player_->setPosition(pos);
     });
 
-    connect(timer.get(), &QTimer::timeout, this, &Widget::change_theme_by_timer);
+    connect(timer.get(), &QTimer::timeout, this, &Player::change_theme_by_timer);
     timer.get()->start(20000);
 
     connect(ui->list_music, &QListWidget::itemClicked, this,[](QListWidgetItem *item) {
@@ -101,14 +101,14 @@ Widget::Widget(QWidget *parent)
     });
 
 }
-void Widget::media_durationChanged(qint64 duration) {
+void Player::media_durationChanged(qint64 duration) {
     qint64 total_sec = duration / 1000;
 
-    Widget::ui->lab_total->setText(QString("%1:%2").arg(total_sec / 60, 2, 10, QChar('0')).arg(total_sec % 60, 2, 10, QChar('0')));
+    Player::ui->lab_total->setText(QString("%1:%2").arg(total_sec / 60, 2, 10, QChar('0')).arg(total_sec % 60, 2, 10, QChar('0')));
     ui->music_slider->setRange(0, duration);
 }
 
-void Widget::init_ui() {
+void Player::init_ui() {
 
     //  load font for QListWidget
     int fontId = QFontDatabase::addApplicationFont(":/jianglan.ttf");
@@ -164,18 +164,18 @@ void Widget::init_ui() {
 
 }
 
-bool Widget::is_playable() {
+bool Player::is_playable() {
     return !playlist_.empty();
 }
 
-Widget::~Widget()
+Player::~Player()
 {
     player_->stop();
     playlist_.clear();
     delete ui;
 }
 
-void Widget::on_btn_directory_clicked()
+void Player::on_btn_directory_clicked()
 {
     QString path = QFileDialog::getExistingDirectory(this, "Select directory of music:", "/home/hml/Music");
     if (path.isEmpty()) {
@@ -184,7 +184,7 @@ void Widget::on_btn_directory_clicked()
 
     update_player_list(path);
 }
-void Widget::update_player_list(const QString& path){
+void Player::update_player_list(const QString& path){
 
     if(!playlist_.empty()) {
         playlist_.clear();
@@ -204,7 +204,7 @@ void Widget::update_player_list(const QString& path){
     ui->list_music->setCurrentRow(0);
 }
 
-void Widget::on_btn_play_clicked()
+void Player::on_btn_play_clicked()
 {
     if (!is_playable()) {
         return ;
@@ -229,7 +229,7 @@ void Widget::on_btn_play_clicked()
     }
 }
 
-void Widget::on_btn_next_clicked()
+void Player::on_btn_next_clicked()
 {
     if (!is_playable()) {
             return ;
@@ -237,7 +237,7 @@ void Widget::on_btn_next_clicked()
 
     play_next();
 }
-void Widget::play_next() {
+void Player::play_next() {
 
     current_play_index_ = (current_play_index_ + 1) % playlist_.size();
     ui->list_music->setCurrentRow(current_play_index_);
@@ -245,7 +245,7 @@ void Widget::play_next() {
     player_->play();
 }
 
-void Widget::play_rand() {
+void Player::play_rand() {
     current_play_index_ = QRandomGenerator::global()->bounded(playlist_.size());
     qInfo() << current_play_index_;
     ui->list_music->setCurrentRow(current_play_index_);
@@ -254,7 +254,7 @@ void Widget::play_rand() {
 }
 
 
-void Widget::on_btn_prev_clicked()
+void Player::on_btn_prev_clicked()
 {
     if (!is_playable()) {
             return ;
@@ -272,7 +272,7 @@ void Widget::on_btn_prev_clicked()
 }
 
 
-void Widget::on_list_music_doubleClicked(const QModelIndex &index)
+void Player::on_list_music_doubleClicked(const QModelIndex &index)
 {
     if (!is_playable()) {
             return ;
@@ -286,12 +286,12 @@ void Widget::on_list_music_doubleClicked(const QModelIndex &index)
 }
 
 
-void Widget::on_btn_volume_clicked()
+void Player::on_btn_volume_clicked()
 {
     set_mute(!audio_->isMuted());
 }
 
-void Widget::set_mute(bool mute) {
+void Player::set_mute(bool mute) {
     if (mute) {
         audio_->setMuted(true);
         ui->btn_volume->setIcon(QIcon(":/volume-mute.png"));
@@ -303,7 +303,7 @@ void Widget::set_mute(bool mute) {
     }
 }
 
-void Widget::on_btn_theme_clicked()
+void Player::on_btn_theme_clicked()
 {
     // switch(current_theme_) {
     //     case 0: {
@@ -345,7 +345,7 @@ void Widget::on_btn_theme_clicked()
     load_next_theme();
 }
 
-void Widget::on_btn_playmode_clicked()
+void Player::on_btn_playmode_clicked()
 {
     qInfo() << play_mode_;
     if (play_mode_ == PlayMode::ENU_RAND) {
@@ -361,7 +361,7 @@ void Widget::on_btn_playmode_clicked()
 
 }
 
-void Widget::load_next_theme() {
+void Player::load_next_theme() {
 
     switch(current_theme_) {
         case 0: {
@@ -401,7 +401,7 @@ void Widget::load_next_theme() {
     ui->lab_bk->resize(360, 640);
 }
 
-void Widget::change_theme_by_timer() {
+void Player::change_theme_by_timer() {
 
     load_next_theme();
 
@@ -410,12 +410,12 @@ void Widget::change_theme_by_timer() {
 }
 
 
-void Widget::on_list_music_itemClicked(QListWidgetItem *item)
+void Player::on_list_music_itemClicked(QListWidgetItem *item)
 {
 
 }
 
-bool Widget::eventFilter(QObject *obj, QEvent *event) {
+bool Player::eventFilter(QObject *obj, QEvent *event) {
 
     qInfo() << event->type();
 

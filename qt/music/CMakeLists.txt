@@ -14,9 +14,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
 
 set(PROJECT_SOURCES
         main.cpp
-        widget.cpp
-        widget.h
-        widget.ui
+        player.cpp
+        player.h
+        player.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -24,6 +24,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         icon/assets.qrc
+        login.h login.cpp login.ui
+        uimanage.h uimanage.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET music APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
