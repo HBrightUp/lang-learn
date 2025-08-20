@@ -18,6 +18,7 @@ Widget::Widget(QWidget *parent)
 
     current_play_index_ = 0;
     current_theme_ = 0;
+    is_silder_pressed_ = false;
     play_mode_ = PlayMode::ENU_LOOP;
 
     // load media and audio
@@ -40,6 +41,7 @@ Widget::Widget(QWidget *parent)
 
     // Set progressplayer_list_ bar of slider in real time
     connect(player_.get(), &QMediaPlayer::positionChanged, this, [=](qint64 pos){
+
         ui->lab_pos->setText(QString("%1:%2").arg(pos / 1000 / 60, 2, 10, QChar('0')).arg(pos / 1000 % 60, 2, 10, QChar('0')));
         if (!is_silder_pressed_) {
             ui->music_slider->setValue(pos);
@@ -418,4 +420,6 @@ bool Widget::eventFilter(QObject *obj, QEvent *event) {
     qInfo() << event->type();
 
     //ui->list_music->eventFilter()
+
+    return true;
 }
