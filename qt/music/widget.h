@@ -6,6 +6,8 @@
 #include<QAudioOutput>
 #include<QUrl>
 #include<QSharedPointer>
+#include<QTimer>
+#include<QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,19 +39,31 @@ private slots:
     void on_list_music_doubleClicked(const QModelIndex &index);
     void on_btn_volume_clicked();
     void on_btn_theme_clicked();
+    void on_btn_playmode_clicked();
+
+    void init_ui();
     void update_player_list(const QString& path);
     void play_next();
     void play_rand();
     bool is_playable();
     void set_mute(bool mute);
 
-    void on_btn_playmode_clicked();
-    bool loadJpegImage(const QString& filePath, QImage& image);
+    void change_theme_by_timer();
+    void media_durationChanged(qint64 duration);
+    void load_next_theme();
+
+
+    void on_list_music_itemClicked(QListWidgetItem *item);
+
+    // override
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     Ui::Widget *ui;
     QSharedPointer<QAudioOutput> audio_;
     QSharedPointer<QMediaPlayer> player_;
+    QSharedPointer<QTimer> timer;
+
     QList<QUrl> playlist_;
 
     int current_play_index_;
