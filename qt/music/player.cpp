@@ -8,6 +8,7 @@
 #include<QFontDatabase>
 #include<QRandomGenerator>
 #include<QImageReader>
+#include<QKeyEvent>
 
 Player::Player(QWidget *parent)
     : QWidget(parent)
@@ -20,6 +21,8 @@ Player::Player(QWidget *parent)
     current_theme_ = 0;
     is_silder_pressed_ = false;
     play_mode_ = PlayMode::ENU_LOOP;
+
+    setWindowIcon(QIcon(":/app-icon.ico"));
 
     // load media and audio
     //audio_(new QAudioOutput(this));
@@ -50,23 +53,23 @@ Player::Player(QWidget *parent)
 
     //  Monitor the playing status of the music, and if one song is finished, play the next one.
     connect(player_.get(), &QMediaPlayer::mediaStatusChanged, [=](QMediaPlayer::MediaStatus status){
-       if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
-           switch(play_mode_) {
-               case PlayMode::ENU_SINGLE: {
-                   player_->play();
-                   break;
-               }
-               case PlayMode::ENU_LOOP: {
-                   play_next();
-                   break;
-               }
-               case PlayMode::ENU_RAND: {
-                   play_rand();
-                   break;
-               }
-           }
+        if (status == QMediaPlayer::MediaStatus::EndOfMedia) {
+            switch(play_mode_) {
+            case PlayMode::ENU_SINGLE: {
+                player_->play();
+                break;
+            }
+            case PlayMode::ENU_LOOP: {
+                play_next();
+                break;
+            }
+            case PlayMode::ENU_RAND: {
+                play_rand();
+                break;
+            }
+            }
             //play_next();
-       }
+        }
     });
 
     connect(player_.get(), &QMediaPlayer::playbackStateChanged,[=](QMediaPlayer::PlaybackState newState){
@@ -211,29 +214,29 @@ void Player::on_btn_play_clicked()
     }
 
     switch (player_->playbackState()) {
-        case QMediaPlayer::PlaybackState::StoppedState:
-        {
-            current_play_index_ = ui->list_music->currentRow();
-            player_->setSource(playlist_[current_play_index_]);
-            player_->play();
-            break;
-        }
-        case QMediaPlayer::PlaybackState::PlayingState:
-            player_->pause();
-            break;
-        case QMediaPlayer::PlaybackState::PausedState:
-            player_->play();
-            break;
-        default:
-            break;
+    case QMediaPlayer::PlaybackState::StoppedState:
+    {
+        current_play_index_ = ui->list_music->currentRow();
+        player_->setSource(playlist_[current_play_index_]);
+        player_->play();
+        break;
+    }
+    case QMediaPlayer::PlaybackState::PlayingState:
+        player_->pause();
+        break;
+    case QMediaPlayer::PlaybackState::PausedState:
+        player_->play();
+        break;
+    default:
+        break;
     }
 }
 
 void Player::on_btn_next_clicked()
 {
     if (!is_playable()) {
-            return ;
-        }
+        return ;
+    }
 
     play_next();
 }
@@ -257,7 +260,7 @@ void Player::play_rand() {
 void Player::on_btn_prev_clicked()
 {
     if (!is_playable()) {
-            return ;
+        return ;
     }
 
     if (current_play_index_ == 0) {
@@ -275,7 +278,7 @@ void Player::on_btn_prev_clicked()
 void Player::on_list_music_doubleClicked(const QModelIndex &index)
 {
     if (!is_playable()) {
-            return ;
+        return ;
     }
 
     current_play_index_ = index.row();
@@ -288,9 +291,9 @@ void Player::on_list_music_doubleClicked(const QModelIndex &index)
 
 void Player::on_btn_volume_clicked()
 {
-    //set_mute(!audio_->isMuted());
+    set_mute(!audio_->isMuted());
 
-    emit send_message(1, "watch film");
+    //emit send_message(1, "watch film");
 }
 
 void Player::set_mute(bool mute) {
@@ -352,13 +355,13 @@ void Player::on_btn_playmode_clicked()
     qInfo() << play_mode_;
     if (play_mode_ == PlayMode::ENU_RAND) {
         play_mode_ = PlayMode::ENU_SINGLE;
-        ui->btn_playmode->setIcon(QIcon(":/playmode-single"));
+        ui->btn_playmode->setIcon(QIcon(":/playmode-single.png"));
     } else if (play_mode_ == PlayMode::ENU_SINGLE) {
         play_mode_ = PlayMode::ENU_LOOP;
-        ui->btn_playmode->setIcon(QIcon(":/playmode-loop"));
+        ui->btn_playmode->setIcon(QIcon(":/playmode-loop.png"));
     } else {
-        play_mode_ = PlayMode::ENU_LOOP;
-        ui->btn_playmode->setIcon(QIcon(":/playmode-rand"));
+        play_mode_ = PlayMode::ENU_RAND;
+        ui->btn_playmode->setIcon(QIcon(":/playmode-rand.png"));
     }
 
 }
@@ -366,38 +369,38 @@ void Player::on_btn_playmode_clicked()
 void Player::load_next_theme() {
 
     switch(current_theme_) {
-        case 0: {
-            QPixmap pixmap(":/bk2.jpg");
-            QPixmap scaledPixmap = pixmap.scaled(360, 640, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
-            current_theme_ = 1;
-            break;
-        }
-        case 1: {
-            QPixmap pixmap(":/bk3.jpg");
-            QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
-            current_theme_ = 2;
-            break;
-        }
-        case 2: {
-            QPixmap pixmap(":/bk4.jpg");
-            QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
-            current_theme_ = 3;
-            break;
-        }
-        case 3: {
-            current_theme_ = 4;
-            break;
-        }
-        case 4: {
-            QPixmap pixmap(":/bk1.png");
-            QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
-            ui->lab_bk->setPixmap(scaledPixmap);
-            current_theme_ = 0;
-            break;
-        }
+    case 0: {
+        QPixmap pixmap(":/bk2.jpg");
+        QPixmap scaledPixmap = pixmap.scaled(360, 640, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        ui->lab_bk->setPixmap(scaledPixmap);
+        current_theme_ = 1;
+        break;
+    }
+    case 1: {
+        QPixmap pixmap(":/bk3.jpg");
+        QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
+        ui->lab_bk->setPixmap(scaledPixmap);
+        current_theme_ = 2;
+        break;
+    }
+    case 2: {
+        QPixmap pixmap(":/bk4.jpg");
+        QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        ui->lab_bk->setPixmap(scaledPixmap);
+        current_theme_ = 3;
+        break;
+    }
+    case 3: {
+        current_theme_ = 4;
+        break;
+    }
+    case 4: {
+        QPixmap pixmap(":/bk1.png");
+        QPixmap scaledPixmap = pixmap.scaled(ui->lab_bk->size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        ui->lab_bk->setPixmap(scaledPixmap);
+        current_theme_ = 0;
+        break;
+    }
     }
 
     ui->lab_bk->resize(360, 640);
@@ -425,3 +428,35 @@ bool Player::eventFilter(QObject *obj, QEvent *event) {
 
     return true;
 }
+void Player::keyReleaseEvent(QKeyEvent *event) {
+    qInfo() << "Key down: " << event->key();
+
+    if (event->key() == Qt::Key_Escape) {
+        //this->hide();
+    }
+
+    switch (event->key()) {
+        case Qt::Key_F: {
+        if (event->key() == Qt::Key_F) {
+                qInfo() << "ctrl + F key down.";
+
+        }
+
+            break;
+        }
+        case Qt::Key_Escape: {
+            //this->hide();
+            break;
+        }
+        default:{
+            QWidget::keyPressEvent(event);
+        }
+    }
+
+}
+
+
+
+
+
+

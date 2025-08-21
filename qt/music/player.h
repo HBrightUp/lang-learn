@@ -40,6 +40,7 @@ private slots:
     void on_btn_volume_clicked();
     void on_btn_theme_clicked();
     void on_btn_playmode_clicked();
+    void on_list_music_itemClicked(QListWidgetItem *item);
 
     void init_ui();
     void update_player_list(const QString& path);
@@ -51,12 +52,6 @@ private slots:
     void change_theme_by_timer();
     void media_durationChanged(qint64 duration);
     void load_next_theme();
-
-
-    void on_list_music_itemClicked(QListWidgetItem *item);
-
-    // override
-    bool eventFilter(QObject *obj, QEvent *event) override;
 
 signals:
     void send_message(int msg_id, QString data);
@@ -74,5 +69,10 @@ private:
     bool is_silder_pressed_;
     PlayMode play_mode_;
 
+
+    // QWidget interface
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override ;
 };
 #endif // PLAYER_H
