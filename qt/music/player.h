@@ -58,6 +58,9 @@ private slots:
     // override
     bool eventFilter(QObject *obj, QEvent *event) override;
 
+signals:
+    void send_message(int msg_id, QString data);
+
 private:
     Ui::Player *ui;
     QSharedPointer<QAudioOutput> audio_;

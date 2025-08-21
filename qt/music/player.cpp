@@ -288,7 +288,9 @@ void Player::on_list_music_doubleClicked(const QModelIndex &index)
 
 void Player::on_btn_volume_clicked()
 {
-    set_mute(!audio_->isMuted());
+    //set_mute(!audio_->isMuted());
+
+    emit send_message(1, "watch film");
 }
 
 void Player::set_mute(bool mute) {

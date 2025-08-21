@@ -4,6 +4,7 @@
 #include<QObject>
 #include"login.h"
 #include"player.h"
+#include"video.h"
 
 class UiManage:public QObject
 {
@@ -14,11 +15,13 @@ class UiManage:public QObject
 
     private slots:
         void login_message_rev(int, QString);
+        void player_message_rev(int, QString);
 
     private:
 
         QScopedPointer<Login> login_;
         QScopedPointer<Player> player_;
+        QScopedPointer<Video> video_;
 
 };
 

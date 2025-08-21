@@ -56,7 +56,11 @@
      <string>Name</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="le_name"/>
+   <widget class="QLineEdit" name="le_name">
+    <property name="text">
+     <string>hml</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QSplitter" name="splitter_2">
    <property name="geometry">
@@ -75,7 +79,11 @@
      <string>Pasword</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="le_password"/>
+   <widget class="QLineEdit" name="le_password">
+    <property name="text">
+     <string>123</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
