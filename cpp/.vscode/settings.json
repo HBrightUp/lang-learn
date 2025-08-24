@@ -65,6 +65,7 @@
         "regex": "cpp",
         "fstream": "cpp",
         "iomanip": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "source_location": "cpp"
     }
 }

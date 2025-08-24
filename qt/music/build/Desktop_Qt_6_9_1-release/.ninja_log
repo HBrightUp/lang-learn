@@ -1,0 +1,27 @@
+# ninja log v6
+1014	5361	1755946440050025822	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-release/music_autogen/VRODUE237C/qrc_assets.cpp	cb1fc1062f9327da
+16	1014	1755946435733986464	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-release/music_autogen/timestamp	9b263f27243b139
+16	1014	1755946435733986464	music_autogen/timestamp	9b263f27243b139
+1014	5361	1755946440050025822	music_autogen/VRODUE237C/qrc_assets.cpp	cb1fc1062f9327da
+37313	37893	1755946472038323735	music	422f931fef8a999
+5361	10741	1755946440087506879	CMakeFiles/music.dir/login.cpp.o	20a287d2a8d1cdb2
+5362	10551	1755946440087989388	CMakeFiles/music.dir/video.cpp.o	ec213beeb9db97cb
+5361	11176	1755946440086026151	CMakeFiles/music.dir/music_autogen/mocs_compilation.cpp.o	b2e6cbc2d0acce46
+16	1014	1755946435733986464	music_autogen/mocs_compilation.cpp	9b263f27243b139
+107	132	1755946434671976811	clean	cd30545dd85ccd2f
+3	107	1755946434567975867	CMakeFiles/clean.additional	c6f8d102a75803dc
+16	1014	1755946435733986464	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-release/music_autogen/mocs_compilation.cpp	9b263f27243b139
+5361	12123	1755946440087306921	CMakeFiles/music.dir/player.cpp.o	824f56e2e81de2a6
+5362	10509	1755946440088112554	CMakeFiles/music.dir/tcpclient.cpp.o	f311d11db39c0680
+5361	10524	1755946440087112522	CMakeFiles/music.dir/main.cpp.o	d87e7ff0a7b377c4
+5362	10729	1755946440087781833	CMakeFiles/music.dir/uimanage.cpp.o	e632b367868d78da
+5363	37313	1755946440088764875	CMakeFiles/music.dir/music_autogen/VRODUE237C/qrc_assets.cpp.o	8d3275e96e736d72
+4	31	1755951155682858788	music_autogen/timestamp	9b263f27243b139
+4	31	1755951155682858788	music_autogen/mocs_compilation.cpp	9b263f27243b139
+4	31	1755951155682858788	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-release/music_autogen/timestamp	9b263f27243b139
+4	31	1755951155682858788	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-release/music_autogen/mocs_compilation.cpp	9b263f27243b139
+32	7953	1755951155712039328	CMakeFiles/music.dir/tcpclient.cpp.o	f311d11db39c0680
+32	8222	1755951155712273469	CMakeFiles/music.dir/music.pb.cc.o	a66f26cf6be16510
+32	8381	1755951155711809333	CMakeFiles/music.dir/video.cpp.o	ec213beeb9db97cb
+32	8493	1755951155710859195	CMakeFiles/music.dir/login.cpp.o	20a287d2a8d1cdb2
+31	10066	1755951155709859180	CMakeFiles/music.dir/player.cpp.o	824f56e2e81de2a6

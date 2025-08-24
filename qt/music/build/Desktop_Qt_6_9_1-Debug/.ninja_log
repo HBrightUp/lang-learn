@@ -1,0 +1,17 @@
+# ninja log v6
+938	5193	1755952133093155263	music_autogen/VRODUE237C/qrc_assets.cpp	bb243dbfd1e7d09c
+3193	3674	1755954560006153440	music	b18d700e3a5c1f2b
+47	3340	1755991301092102552	CMakeFiles/music.dir/player.cpp.o	70af9d7d599b4bbb
+1056	3805	1755954003397908182	CMakeFiles/music.dir/tcpclient.cpp.o	67a68ea71182a0a3
+47	2239	1755991301092985715	CMakeFiles/music.dir/login.cpp.o	291208aae4087b90
+47	2183	1755991301093250883	CMakeFiles/music.dir/video.cpp.o	cbd2c38f45ed40aa
+1054	4212	1755954003395033546	CMakeFiles/music.dir/music_autogen/mocs_compilation.cpp.o	3c683ac49399e0ba
+4	47	1755991301049098019	music_autogen/timestamp	d4e66a866affc2f5
+938	5193	1755952133093155263	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/music_autogen/VRODUE237C/qrc_assets.cpp	bb243dbfd1e7d09c
+1054	4067	1755954003395821282	CMakeFiles/music.dir/main.cpp.o	bedaa405c2e33612
+4	47	1755991301049098019	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/music_autogen/timestamp	d4e66a866affc2f5
+1054	4573	1755954003396426322	CMakeFiles/music.dir/uimanage.cpp.o	5485167de3d034e
+4	47	1755991301049098019	/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/music_autogen/mocs_compilation.cpp	d4e66a866affc2f5
+4	47	1755991301049098019	music_autogen/mocs_compilation.cpp	d4e66a866affc2f5
+2	318	1755991294815450434	build.ninja	ad30c28885fb570c
+1058	29366	1755954003399033290	CMakeFiles/music.dir/music_autogen/VRODUE237C/qrc_assets.cpp.o	bc674dbad8499ce9
