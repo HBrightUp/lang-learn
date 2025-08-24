@@ -1,9 +1,0 @@
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/music.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/edit_cache.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/rebuild_cache.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/list_install_components.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/install.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/install/local.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/install/strip.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/music_autogen_timestamp_deps.dir
-/home/hml/project/lang-learn/qt/music/build/Desktop_Qt_6_9_1-Debug/CMakeFiles/music_autogen.dir
