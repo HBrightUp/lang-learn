@@ -56,6 +56,7 @@ func main() {
 		var x interface{}
 
 
+
 		switch x.(type) {
 			case int: {
 				fmt.Print("int type");
@@ -75,4 +76,23 @@ func main() {
 
 			
 		}
+
+		var sum int;
+		for i := 0; i < 100; i++ {
+			sum += i;
+		}
+
+		fmt.Print(sum);
+
+		var x1 = 43;
+		var x2 = 54;
+
+		fmt.Print(finde_max(x1,x2));
+}
+
+func finde_max(x1,x2 int) int {
+	if x1 > x2  {
+		return x1;
+	}
+	return x2;
 }
