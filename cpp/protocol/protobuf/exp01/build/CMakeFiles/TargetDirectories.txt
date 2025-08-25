@@ -1,0 +1,3 @@
+/home/hml/project/lang-learn/cpp/protocol/protobuf/exp01/build/CMakeFiles/flying.dir
+/home/hml/project/lang-learn/cpp/protocol/protobuf/exp01/build/CMakeFiles/edit_cache.dir
+/home/hml/project/lang-learn/cpp/protocol/protobuf/exp01/build/CMakeFiles/rebuild_cache.dir

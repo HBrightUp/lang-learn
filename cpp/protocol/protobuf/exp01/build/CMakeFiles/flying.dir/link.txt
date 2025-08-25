@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/flying.dir/main.cpp.o CMakeFiles/flying.dir/proto/person.pb.cc.o CMakeFiles/flying.dir/proto/tree.pb.cc.o -o flying  -lprotobuf 
