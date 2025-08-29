@@ -1,0 +1,3 @@
+protoc -I=./ --cpp_out=./   chat.proto
+
+g++ -g -c chat.pb.cc -o chat.pb.o  -I/usr/local/protobuf/include

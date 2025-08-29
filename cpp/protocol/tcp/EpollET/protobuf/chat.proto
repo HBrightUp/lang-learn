@@ -1,0 +1,63 @@
+
+syntax = "proto2";
+
+package MarsMsgChat;
+
+
+//cmd-head=3
+message SendMsgReq {
+	required  string access_token = 1;//用户唯一登陆标志
+	required  string userfrom = 2;//谁发送的
+	required  string userTo = 3;//发送给谁
+	required string text = 4;//发送的消息
+	required int32 msgtype = 5;//发送的消息的类型（|文字1|图片2|语音3|视频4|分享5|游戏6）
+	required  string  headimage= 6;//发送人的头像(包含发送送人的头像) //client
+	required  string  sendname= 7;//发送人姓名(包含发送送人的头像)  //client
+	required  string  senduserid= 8;//发送人ID(包含发送送人的头像)  
+	required  string converstionid = 10;//会话ID
+	required   int32 sendtype=11;//会话ID的类型（1群聊和2单聊）
+	required int64 msguniqueid = 12; // 保证消息唯一性 
+}
+
+// login，SendMsgReq,ContactAdd返回信息
+message SendMsgRsp {
+
+	//消息的错误代码（发送成功1000|发送失败1001|其他1002）
+	required  int32  	err_code = 1;
+
+	//发送消息的错误提示，成功回0,失败时为失败错误码(需要建议错误码对照表)
+	required int32 errmsg = 2;
+	
+	//消息ID	，情况分两种:
+	//Head-cmd=3(正常消息):返回消息生成的ID,由服务器产生；
+	//Head-cmd=6(登陆消息):返回0；
+	required  int64 msgid = 3;
+
+	//发送成功的消息	//预留
+	required  string access_token = 4;
+	
+	//发送成功的会话ID，需要从数据库tb_contacts	表中获取
+	required  string 	converstionid = 5;
+
+	required	int64 msguniqueid = 6; // 保证消息唯一性 
+}
+
+//单聊转送消息和推送消息
+message  PushRsp{
+	required  int32  msgpushtype = 1;//消息的类型（系统推送1|消息推送2）从1开始
+	required int32 errmsg = 2;//发送消息的错误提示
+	required  int32 state = 3;//reserve
+	required  string accesstoken = 4;//reserve
+	required string userfrom = 5;//谁发送的
+	required  string userto = 6;//发送给谁
+	required  string text = 7;//发送的消息
+	required string  headimage= 8;//发送人的头像(包含发送送人的头像)
+	required  string  sendname= 9;//发送人姓名(包含发送送人的头像)
+	required  string  senduserid= 10;//reserve
+	required string converstionid = 11;//会话ID
+	required  int32 sendtype=12;//会话ID的类型（1群聊和2单聊）
+	required int32 msgtype = 13;//发送的消息的类型（（|文字1|图片2|语音3|视频4|分享5|游戏6）
+	required int64 msgid = 14;	//	
+
+
+}

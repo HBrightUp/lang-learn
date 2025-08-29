@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package MarsContactAdd;
+
+//A->server:  cmd:2   server->B: 1101
+//B->server:cmd 4  server->A: cmd 2
+message ContactAdd {
+	
+uint32   msgtype = 1; //1、请求人是添加好友方 2、请求人是同意方
+
+uint32   optiontype=2;//1、同意 2、拒接 3、永久拒接
+
+uint32  useridA = 3;
+
+uint32  useridB = 4;
+
+}
+
+
+//on line: server->B cmd:1101
+
+message UserInfoAB{
+
+uint32   msgtype	 =1; //1、请求人是添加好友方 2、请求人是同意方
+
+uint32   typeOption =2; //1|同意添加 2|不同意  3|永久拒接
+
+uint32  userId = 3;//发送用户的ID
+
+string  name=4;//发送用户的名称
+
+string  head=5;//发送用户的头像
+
+string  birthday= 6;//发送用户的生日
+
+string  email=7; //发送用户的email
+
+string  token=8;
+
+uint32  sex = 9;//性别
+
+string  phone = 10;//电话
+
+}
+
+
+
+

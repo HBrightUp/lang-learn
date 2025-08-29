@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package MarsLogin;
+
+message LoginRequst {
+	string userName = 1;
+	int32  userID = 2;
+	string email = 3;
+	string telPhone=4;
+	string password =5;
+	string imagePath=6;
+	string CustionJson=7;
+}
+
+
+

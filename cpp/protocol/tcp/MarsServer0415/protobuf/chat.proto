@@ -1,0 +1,138 @@
+
+syntax = "proto2";
+
+package MarsMsgChat;
+
+
+message LoginRequst {
+	required string userName = 1;
+	required int32  userID = 2;
+}
+
+message LogoutRequst{
+
+	 required  int32  userID = 1;
+
+}
+
+
+//A->server:  cmd:2   server->B: 1101
+//B->server:cmd 4  server->A: cmd 2
+message ContactAdd {
+	
+	required uint32   msgtype = 1; //1、请求人是添加好友方 2、请求人是同意方
+
+	required uint32   optiontype=2;	//1、同意 2、拒接 3、永久拒接
+
+	required uint32  useridA = 3;
+
+	required uint32  useridB = 4	;
+
+}
+
+
+//on line: server->B cmd:1101
+
+message UserInfoAB{
+
+	required uint32   msgtype	 =1; //1、请求人是添加好友方 2、请求人是同意方
+
+	required uint32   typeOption =2; //1|同意添加 2|不同意  3|永久拒接    //	
+
+	required uint32  userId = 3;	//发送用户的ID
+
+	required string  name=4;//发送用户的名称
+
+	required string  head=5;//发送用户的头像
+
+	required string  birthday= 6;//发送用户的生日
+
+	required string  email=7; //发送用户的email
+
+	required string  token=8;
+
+	required uint32  sex = 9;//性别
+
+	required string  phone = 10;//电话
+
+	required string converstionid = 11;
+
+}
+
+
+
+
+
+
+//cmd-head=3
+message SendMsgReq {
+	required  string 	access_token = 1;//用户唯一登陆标志
+	required  string userfrom = 2;//谁发送的
+	required  string userTo = 3;//发送给谁
+	required string text = 4;//发送的消息
+	required int32 msgtype = 5;//发送的消息的类型（|文字1|图片2|语音3|视频4|分享5|游戏6）
+	required  string  headimage= 6;//发送人的头像(包含发送送人的头像) //client
+	required  string  sendname= 7;//发送人姓名(包含发送送人的头像)  //client
+	required  string  senduserid= 8;//发送人ID(包含发送送人的头像)  
+	required  string converstionid = 9;//会话ID
+	required   int32 sendtype=10;//会话ID的类型（1群聊和2单聊）
+	required int64 msguniqueid = 11; // 保证消息唯一性 
+	required	int32 len = 12;	// 图片/语音长度
+	required	int32 width = 13; //图片宽度
+}
+
+// login，SendMsgReq,ContactAdd返回信息
+message SendMsgRsp {
+
+	//消息的错误代码（发送成功1000|发送失败1001|其他1002）
+	required  int32  	err_code = 1;
+
+	//发送消息的错误提示，成功回0,失败时为失败错误码(需要建议错误码对照表)
+	required int32 errmsg = 2;
+	
+	//消息ID	，情况分两种:
+	//Head-cmd=3(正常消息):返回消息生成的ID,由服务器产生；
+	//Head-cmd=6(登陆消息):返回0；
+	required  string msgid = 3;
+
+	//发送成功的消息	//预留
+	required  string access_token = 4;
+	
+	//发送成功的会话ID，需要从数据库tb_contacts	表中获取
+	required  string 	converstionid = 5;
+
+	required	int64 msguniqueid = 6; // 保证消息唯一性 
+}
+
+//单聊转送消息和推送消息
+message  PushRsp{
+	required  int32  msgpushtype = 1;//消息的类型（1系统推送|2在线消息推送|3离线消息推送）从1开始
+	required int32 errmsg = 2;//发送消息的错误提示
+	required  int32 state = 3;//reserve
+	required  string accesstoken = 4;//reserve
+	required string userfrom = 5;//谁发送的
+	required  string userto = 6;//发送给谁
+	required  string text = 7;//发送的消息
+	required string  headimage= 8;//发送人的头像(包含发送送人的头像)
+	required  string  sendname= 9;//发送人姓名(包含发送送人的头像),如果是系统推送，则是指群的名称
+	required  string  senduserid= 10;//reserve
+	required string converstionid = 11;//会话ID
+	required  int32 sendtype=12;//会话ID的类型（1群聊和2单聊）
+	required int32 msgtype = 13;//发送的消息的类型（（|文字1|图片2|语音3|视频4|分享5|游戏6）
+	required string msgid = 14;	//	
+
+	required int32 len = 15;	// 图片长度
+	required int32 width = 16; //图片宽度
+
+}
+
+//client 
+message MsgOffline{
+
+	required int32 userfrom = 1;//发送者
+	required  int32 userto = 2;//接收者
+	required  int32 sendtype=3;//会话ID的类型（1群聊;2单聊;3 添加好友;4添加好友回执 ）
+	required int32 msgtype = 4;//发送的消息的类型（（|文字1|图片2|语音3|视频4|分享5|游戏6）
+	required string converstionid = 5;//会话ID
+
+}

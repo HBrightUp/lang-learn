@@ -1,0 +1,66 @@
+CC	:= g++
+TARGET	:= server.bin
+OBJECTS	:= main.o EpollServer.o MsgManage.o PublicFun.o chat.pb.o login.pb.o MsgKeeplive.o \
+		MsgPush.o SendMsgReq.o MsgLogin.o EncapMysql.o MysqlCom.o UserManage.o LogFile.o
+	
+CFLAGS	:= -g
+LIB_PROTOBUF	:= -L/usr/local/protobuf/lib
+
+INCLUDE	:= -I/usr/local/protobuf/include -I./protobuf -I./epoll -I./log -I./msg -I./mysql -I./public -I./usr
+
+FLAG_MYSQL	:=-lmysqlcppconn -lmysqlcppconn-static
+
+OTHERS	:= -lprotobuf -lpthread
+
+
+
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) $(INCLUDE) $(LIB_PROTOBUF) $(FLAG_MYSQL) $(OTHERS) 
+
+main.o: ./main/main.cpp
+	$(CC) $(CFLAGS) -c ./main/main.cpp  $(INCLUDE)
+
+EpollServer.o: ./epoll/EpollServer.cpp 
+	$(CC) $(CFLAGS) -c ./epoll/EpollServer.cpp $(INCLUDE) 
+
+MsgManage.o:./msg/MsgManage.cpp
+	$(CC) $(CFLAGS) -c ./msg/MsgManage.cpp   $(INCLUDE)  
+
+PublicFun.o:./public/PublicFun.cpp
+	$(CC) $(CFLAGS) -c ./public/PublicFun.cpp   $(INCLUDE)
+
+MsgKeeplive.o:./msg/MsgKeeplive.cpp
+	$(CC) $(CFLAGS) -c ./msg/MsgKeeplive.cpp  
+
+chat.pb.o: ./protobuf/chat.pb.cc
+	$(CC) $(CFLAGS) -c ./protobuf/chat.pb.cc  $(INCLUDE)
+
+login.pb.o: ./protobuf/login.pb.cc
+	$(CC) $(CFLAGS) -c ./protobuf/login.pb.cc  $(INCLUDE)
+
+MsgPush.o: ./msg/MsgPush.cpp
+	$(CC) $(CFLAGS) -c ./msg/MsgPush.cpp  $(INCLUDE)
+
+SendMsgReq.o: ./msg/SendMsgReq.cpp
+	$(CC) $(CFLAGS) -c ./msg/SendMsgReq.cpp  $(INCLUDE)
+
+MsgLogin.o: ./msg/MsgLogin.cpp
+	$(CC) $(CFLAGS) -c ./msg/MsgLogin.cpp  $(INCLUDE)
+
+EncapMysql.o: ./mysql/EncapMysql.cpp
+	$(CC) $(CFLAGS) -c ./mysql/EncapMysql.cpp  $(INCLUDE)
+
+MysqlCom.o: ./mysql/MysqlCom.cpp
+	$(CC) $(CFLAGS) -c ./mysql/MysqlCom.cpp  $(INCLUDE)
+
+UserManage.o: ./usr/UserManage.cpp
+	$(CC) $(CFLAGS) -c ./usr/UserManage.cpp 
+
+LogFile.o: ./log/LogFile.cpp
+	$(CC) $(CFLAGS) -c ./log/LogFile.cpp 
+
+.PHONY:clean
+
+clean:
+	-rm -rf *.o ./$(TARGET)
