@@ -157,6 +157,20 @@ func main() {
 	for i := 0; i < 10; i++ {
 		fmt.Println(f())
 	}
+
+	v := Vertex{3, 4}
+	v.Scale(10)
+	fmt.Println("scaled: ", v.Abs())
+
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.Lat*v.Lat + v.Long*v.Long)
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.Lat = v.Lat * f
+	v.Long = v.Long * f
 }
 
 func fibonacci() func() int {
