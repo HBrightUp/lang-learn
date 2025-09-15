@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"math"
 	"math/rand"
+	"strings"
+	"time"
 )
 
 const (
@@ -162,6 +165,141 @@ func main() {
 	v.Scale(10)
 	fmt.Println("scaled: ", v.Abs())
 
+	var i1 I
+	i1 = &T{"hello"}
+	describle(i1)
+
+	var t *T
+	i2 := t
+	describle(i2) //	(<nil>, *main.T)
+
+	var i3 I
+	describle(i3) //	(<nil>, <nil>)
+
+	var i4 interface{}
+	i4 = 42
+	describle2(i4) //	(42, int)
+
+	i4 = "bright"
+	describle2(i4) //	(bright, string)
+
+	s2, ok := i4.(string)
+	fmt.Println(s2, ok)
+
+	do(31)
+	do("hello")
+	do(true)
+
+	a1 := Person{"Bright", 20}
+	z1 := Person{"hml", 18}
+	fmt.Println(a1, z1)
+
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+
+	for name, ip := range hosts {
+		fmt.Printf("%v : %v\n", name, ip)
+	}
+
+	if err := run(); err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
+
+	r := strings.NewReader("Hello, Reader!")
+	b1 := make([]byte, 8)
+
+	for {
+		n, err := r.Read(b1)
+		fmt.Printf("n = %v err = %v b = %v\n", n, err, b1)
+		fmt.Printf("b[:n] = %q\n", b1[:n])
+		if err == io.EOF {
+			break
+		}
+	}
+}
+
+type ErrNeagativeSqrt struct {
+	Value float64
+}
+
+func (e ErrNeagativeSqrt) Error() string {
+	return fmt.Sprintf("cannot calculate square root of negative number: %v", e.Value)
+}
+
+func Sqrt(x float64) (float64, error) {
+
+	if x < 0 {
+		return 0, &ErrNeagativeSqrt{x}
+	}
+
+	return math.Sqrt(x), nil
+}
+
+type MyError struct {
+	When time.Time
+	what string
+}
+
+func (e MyError) Error() string {
+	return fmt.Sprintf("at %v: %s", e.When, e.what)
+}
+
+func run() error {
+	return &MyError{
+		time.Now(),
+		"destory",
+	}
+}
+
+type IPAddr [4]byte
+
+func (ip *IPAddr) String() string {
+	return string(ip[:])
+}
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) String() string {
+	return fmt.Sprintf("%v : %v years", p.Name, p.Age)
+}
+
+func do(i interface{}) {
+	switch i.(type) {
+	case int:
+		fmt.Println("int type")
+	case string:
+		fmt.Println("string type")
+	default:
+		fmt.Println("unknown type")
+	}
+}
+
+func describle2(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+func describle(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+func (t *T) M() {
+	fmt.Println(t.S)
 }
 
 func (v Vertex) Abs() float64 {
